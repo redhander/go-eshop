@@ -21,8 +21,11 @@ type Config struct {
 	StripeSecretKey      string        `mapstructure:"STRIPE_SECRET_KEY"`
 	StripePublishableKey string        `mapstructure:"STRIPE_PUBLISHABLE_KEY"`
 	StripeWebhookSecret  string        `mapstructure:"STRIPE_WEBHOOK_SECRET"`
+	SmtpHost             string        `mapstructure:"SMTP_HOST"`
+	SmtpPort             int           `mapstructure:"SMTP_PORT"`
 	SmtpUsername         string        `mapstructure:"SMTP_USERNAME"`
 	SmtpPassword         string        `mapstructure:"SMTP_PASSWORD"`
+	SmtpFrom             string        `mapstructure:"SMTP_FROM"`
 	SymmetricKey         string        `mapstructure:"SYMMETRIC_KEY"`
 }
 

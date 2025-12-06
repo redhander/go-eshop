@@ -116,7 +116,7 @@ func apiCmd(ctx context.Context, cfg config.Config) *cobra.Command {
 
 			taskDistributor := worker.NewRedisTaskDistributor(redisCfg)
 			uploadService := upload.NewCloudinaryUploader(cfg)
-			mailer := mailer.NewEmailSender(cfg.SmtpUsername, cfg.SmtpPassword, cfg.Env)
+			mailer := mailer.NewEmailSender(cfg.SmtpHost, cfg.SmtpPort, cfg.SmtpUsername, cfg.SmtpPassword, cfg.SmtpFrom, cfg.Env)
 			service := payment.NewPaymentService()
 
 			// Register gateways
