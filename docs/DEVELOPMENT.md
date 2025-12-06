@@ -20,7 +20,7 @@ This guide provides comprehensive information for developers working on the e-co
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/thanhphuocnguyen/go-eshop.git
+   git clone https://github.com/redhander/go-eshop.git
    cd go-eshop/server
    ```
 

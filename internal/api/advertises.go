@@ -5,9 +5,9 @@ import (
 	"sync"
 
 	"github.com/gin-gonic/gin"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/utils"
 )
 
 func (s *Server) getHomePageHandler(ctx *gin.Context) {

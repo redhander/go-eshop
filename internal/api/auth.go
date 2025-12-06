@@ -9,12 +9,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/hibiken/asynq"
-	repository "github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
-	"github.com/thanhphuocnguyen/go-eshop/internal/worker"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
+	repository "github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/internal/worker"
+	"github.com/redhander/go-eshop/pkg/auth"
 )
 
 // ------------------------------ Handlers ------------------------------
@@ -25,10 +25,10 @@ import (
 // @Tags users
 // @Accept  json
 // @Produce  json
-// @Param input body RegisterRequestBody true "User info"
-// @Success 200 {object} ApiResponse[UserDetail]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.RegisterModel true "User info"
+// @Success 200 {object} dto.ApiResponse[dto.UserDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /auth/register [post]
 func (sv *Server) RegisterHandler(c *gin.Context) {
 	var req models.RegisterModel
@@ -166,10 +166,10 @@ func (sv *Server) RegisterHandler(c *gin.Context) {
 // @Tags users
 // @Accept  json
 // @Produce  json
-// @Param input body LoginRequest true "User info"
-// @Success 200 {object} ApiResponse[LoginResponse]
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.LoginModel true "User info"
+// @Success 200 {object} dto.ApiResponse[dto.LoginResponse]
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /auth/login [post]
 func (sv *Server) LoginHandler(c *gin.Context) {
 	var req models.LoginModel
@@ -259,9 +259,9 @@ func (sv *Server) LoginHandler(c *gin.Context) {
 // @Tags users
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} ApiResponse[RefreshTokenResponse]
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.RefreshToken]
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /auth/refresh-token [post]
 func (sv *Server) RefreshTokenHandler(c *gin.Context) {
 	authHeader := c.GetHeader("Authorization")

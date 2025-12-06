@@ -9,11 +9,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/hibiken/asynq"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/worker"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/worker"
+	"github.com/redhander/go-eshop/pkg/auth"
 )
 
 // UpdateUserHandler godoc
@@ -22,8 +22,8 @@ import (
 // @Tags users
 // @Accept  json
 // @Produce  json
-// @Param input body UpdateUserRequest true "User info"
-// @Success 200 {object} ApiResponse[repository.UpdateUserRow]
+// @Param input body models.UpdateUserModel true "User info"
+// @Success 200 {object} dto.ApiResponse[repository.UpdateUserRow]
 // @Failure 400 {object} ErrorResp
 // @Failure 401 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -90,7 +90,7 @@ func (sv *Server) UpdateUserHandler(c *gin.Context) {
 // @Tags users
 // @Accept  json
 // @Produce  json
-// @Success 200 {object} ApiResponse[UserDetail]
+// @Success 200 {object} dto.ApiResponse[dto.UserDetail]
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /users/me [get]
@@ -133,7 +133,7 @@ func (sv *Server) GetCurrentUserHandler(c *gin.Context) {
 // @Produce  json
 // @Param limit query int false "Limit"
 // @Param offset query int false "Offset"
-// @Success 200 {object} ApiResponse[[]UserDetail]
+// @Success 200 {object} dto.ApiResponse[[]dto.UserDetail]
 // @Failure 500 {object} ErrorResp
 // @Failure 400 {object} ErrorResp
 // @Failure 401 {object} ErrorResp
@@ -182,7 +182,7 @@ func (sv *Server) GetUsersHandler(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "User ID"
-// @Success 200 {object} ApiResponse[UserDetail]
+// @Success 200 {object} dto.ApiResponse[dto.UserDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp

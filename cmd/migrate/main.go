@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/thanhphuocnguyen/go-eshop/internal/cmd"
+	"github.com/redhander/go-eshop/internal/cmd"
 )
 
 func main() {

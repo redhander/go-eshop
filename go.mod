@@ -1,6 +1,6 @@
-module github.com/thanhphuocnguyen/go-eshop
+module github.com/redhander/go-eshop
 
-go 1.24.2
+go 1.23.12
 
 require (
 	aidanwoods.dev/go-paseto v1.5.2

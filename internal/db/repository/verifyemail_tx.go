@@ -4,8 +4,8 @@ import (
 	"context"
 	"time"
 
+	"github.com/redhander/go-eshop/internal/utils"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
 )
 
 // VerifyEmailTxArgs contains the parameters needed for the verify email transaction

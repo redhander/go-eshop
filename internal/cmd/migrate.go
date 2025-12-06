@@ -5,9 +5,9 @@ import (
 	"fmt"
 
 	"github.com/golang-migrate/migrate/v4"
+	"github.com/redhander/go-eshop/config"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	"github.com/thanhphuocnguyen/go-eshop/config"
 )
 
 func ExecuteMigrate(ctx context.Context) int {

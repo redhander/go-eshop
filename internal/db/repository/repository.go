@@ -9,8 +9,8 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/redhander/go-eshop/config"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/config"
 )
 
 type Repository interface {

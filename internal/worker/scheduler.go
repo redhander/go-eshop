@@ -4,8 +4,8 @@ import (
 	"time"
 
 	"github.com/hibiken/asynq"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	app_logger "github.com/thanhphuocnguyen/go-eshop/pkg/logger"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	app_logger "github.com/redhander/go-eshop/pkg/logger"
 )
 
 type RedisTaskScheduler struct {

@@ -1,6 +1,8 @@
 package dto
 
-import "github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
+import (
+	"github.com/redhander/go-eshop/internal/db/repository"
+)
 
 type PaymentIntentSecret struct {
 	PaymentID    string  `json:"paymentId"`
@@ -25,4 +27,13 @@ type PaymentInfo struct {
 	GateWay      *string `json:"gateway"`
 	Method       string  `json:"method"`
 	Status       string  `json:"status"`
+}
+
+type PaymentResult struct {
+	PaymentID       string  `json:"paymentId"`
+	ClientSecret    *string `json:"clientSecret,omitempty"`
+	PaymentIntentID string  `json:"paymentIntentId"`
+	TotalPrice      float64 `json:"totalPrice"`
+	OrderID         string  `json:"orderId"`
+	Status          string  `json:"status"`
 }

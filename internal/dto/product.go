@@ -3,9 +3,9 @@ package dto
 import (
 	"encoding/json"
 
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/utils"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
 )
 
 type ProductAttribute struct {

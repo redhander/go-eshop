@@ -7,10 +7,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
 	"github.com/go-playground/validator/v10"
+	docs "github.com/redhander/go-eshop/docs"
 	"github.com/stripe/stripe-go/v81"
 	swaggerfiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	docs "github.com/thanhphuocnguyen/go-eshop/docs"
 )
 
 func (sv *Server) addAdminRoutes(rg *gin.RouterGroup) {

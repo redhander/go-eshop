@@ -5,9 +5,9 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/pkg/auth"
 )
 
 // @Summary Get list of product image by ID
@@ -17,9 +17,9 @@ import (
 // @Accept json
 // @Param productId path int true "Product ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[[]ImageResponse]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.ImageResponse]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /images/product/{productId} [get]
 func (sv *Server) GetProductImagesHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -38,9 +38,9 @@ func (sv *Server) GetProductImagesHandler(c *gin.Context) {
 // @Accept json
 // @Param publicID path int true "Product ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[bool]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[bool]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /images/{publicID} [delete]
 func (sv *Server) RemoveImageByPublicIDHandler(c *gin.Context) {
 	_, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)

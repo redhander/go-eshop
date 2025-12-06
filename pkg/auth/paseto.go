@@ -5,9 +5,9 @@ import (
 
 	"aidanwoods.dev/go-paseto"
 	"github.com/google/uuid"
+	"github.com/redhander/go-eshop/config"
+	"github.com/redhander/go-eshop/internal/db/repository"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/config"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
 )
 
 type PasetoTokenGenerator struct {

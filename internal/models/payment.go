@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/db/repository"
 )
 
 type PaymentModel struct {

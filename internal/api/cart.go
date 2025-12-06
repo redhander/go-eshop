@@ -9,13 +9,13 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/pkg/payment"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/payment"
 )
 
 // @Summary Create a new cart
@@ -24,7 +24,7 @@ import (
 // @Tags carts
 // @Accept json
 // @Produce json
-// @Success 200 {object} ApiResponse[CartDetailResponse]
+// @Success 200 {object} dto.ApiResponse[dto.CartDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
@@ -77,7 +77,7 @@ func (sv *Server) CreateCart(c *gin.Context) {
 // @Tags cart
 // @Accept json
 // @Produce json
-// @Success 200 {object} ApiResponse[CartDetailResponse]
+// @Success 200 {object} dto.ApiResponse[dto.CartDetail]
 // @Failure 500 {object} ErrorResp
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
@@ -145,9 +145,9 @@ func (sv *Server) GetCartHandler(c *gin.Context) {
 // @Tags carts
 // @Accept json
 // @Produce json
-// @Success 200 {object} ApiResponse[[]repository.GetAvailableDiscountsForCartRow]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.CartDiscount]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /carts/available-discounts [get]
 func (sv *Server) GetCartAvailableDiscountsHandler(c *gin.Context) {
 	authPayload, _ := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -173,11 +173,11 @@ func (sv *Server) GetCartAvailableDiscountsHandler(c *gin.Context) {
 // @Description add a product to the cart
 // @Tags carts
 // @Accept json
-// @Param input body UpdateCartItemQtyRequest true "Add product to cart input"
+// @Param input body models.UpdateCartItemQtyModel true "Add product to cart input"
 // @Produce json
-// @Success 200 {object} ApiResponse[string]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[string]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /carts/items/{variant_id} [post]
 func (sv *Server) UpdateCartItemQtyHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -267,7 +267,7 @@ func (sv *Server) UpdateCartItemQtyHandler(c *gin.Context) {
 // @Accept json
 // @Param id path int true "Product ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[string]
+// @Success 200 {object} dto.ApiResponse[string]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 403 {object} ErrorResp
@@ -325,14 +325,14 @@ func (sv *Server) RemoveCartItem(c *gin.Context) {
 // @Description update product items in the cart
 // @Tags carts
 // @Accept json
-// @Param input body CheckoutRequest true "Checkout input"
+// @Param input body models.CheckoutModel true "Checkout input"
 // @Produce json
-// @Success 200 {object} ApiResponse[repository.CreatePaymentResult]
-// @Failure 400 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 403 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.PaymentResult]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 403 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /carts/checkout [post]
 func (sv *Server) CheckoutHandler(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)

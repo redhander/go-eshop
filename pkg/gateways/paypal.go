@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/thanhphuocnguyen/go-eshop/pkg/payment"
+	"github.com/redhander/go-eshop/pkg/payment"
 )
 
 type PaypalGateway struct {

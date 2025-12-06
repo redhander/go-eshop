@@ -7,7 +7,7 @@ import (
 
 	"github.com/go-redis/cache/v8"
 	"github.com/go-redis/redis/v8"
-	"github.com/thanhphuocnguyen/go-eshop/config"
+	"github.com/redhander/go-eshop/config"
 )
 
 type RedisContainer struct {

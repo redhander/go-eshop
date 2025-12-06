@@ -7,11 +7,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/pkg/auth"
 )
 
 // @Summary Post a rating
@@ -25,7 +25,7 @@ import (
 // @Param content formData string true "Review Content"
 // @Param files formData file false "Images"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[ProductRatingModel]
+// @Success 200 {object} dto.ApiResponse[dto.ProductRatingDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 403 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -85,7 +85,7 @@ func (s *Server) postRatingHandler(c *gin.Context) {
 // @Param ratingId body string true "Rating ID"
 // @Param helpful body bool true "Helpful"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[string]
+// @Success 200 {object} dto.ApiResponse[string]
 // @Failure 400 {object} ErrorResp
 // @Failure 403 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -134,7 +134,7 @@ func (s *Server) postRatingHelpfulHandler(c *gin.Context) {
 // @Param ratingId path string true "Rating ID"
 // @Param content body string true "Reply Content"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[string]
+// @Success 200 {object} dto.ApiResponse[string]
 // @Failure 400 {object} ErrorResp
 // @Failure 403 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -179,7 +179,7 @@ func (s *Server) postReplyRatingHandler(c *gin.Context) {
 // @Param productId path string true "Product ID"
 // @Param page query int false "Page number" default(1)
 // @Param pageSize query int false "Page size" default(10)
-// @Success 200 {object} ApiResponse[[]ProductRatingModel]
+// @Success 200 {object} dto.ApiResponse[[]dto.ProductRatingDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -272,7 +272,7 @@ func (s *Server) getRatingsHandler(c *gin.Context) {
 // @Param productId path string true "Product ID"
 // @Param page query int false "Page number" default(1)
 // @Param pageSize query int false "Page size" default(10)
-// @Success 200 {object} ApiResponse[[]ProductRatingModel]
+// @Success 200 {object} dto.ApiResponse[[]dto.ProductRatingDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -352,7 +352,7 @@ func (s *Server) getRatingsByProductHandler(c *gin.Context) {
 // @Produce json
 // @Param orderId path string true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[[]ProductRatingModel]
+// @Success 200 {object} dto.ApiResponse[[]dto.ProductRatingDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 403 {object} ErrorResp
 // @Failure 404 {object} ErrorResp

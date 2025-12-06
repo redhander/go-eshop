@@ -14,18 +14,18 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
 	"github.com/hibiken/asynq"
+	"github.com/redhander/go-eshop/config"
+	"github.com/redhander/go-eshop/internal/api"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/worker"
+	cachesrv "github.com/redhander/go-eshop/pkg/cache"
+	"github.com/redhander/go-eshop/pkg/gateways"
+	"github.com/redhander/go-eshop/pkg/mailer"
+	"github.com/redhander/go-eshop/pkg/payment"
+	"github.com/redhander/go-eshop/pkg/upload"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	"github.com/thanhphuocnguyen/go-eshop/config"
-	"github.com/thanhphuocnguyen/go-eshop/internal/api"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/worker"
-	cachesrv "github.com/thanhphuocnguyen/go-eshop/pkg/cache"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/gateways"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/mailer"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/payment"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/upload"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -41,6 +41,7 @@ func Execute(ctx context.Context) int {
 	if cfg.Env == "development" {
 		log.Logger = log.Output(zerolog.ConsoleWriter{Out: os.Stderr})
 	}
+	//go run ./cmd/web api --port 8080 --profile
 
 	profile := false
 	var rootCmd = &cobra.Command{
@@ -81,6 +82,10 @@ func Execute(ctx context.Context) int {
 
 	rootCmd.PersistentFlags().StringVarP(&cfg.Domain, "domain", "d", cfg.Domain, "HTTP domain")
 	rootCmd.PersistentFlags().StringVarP(&cfg.Port, "port", "p", cfg.Port, "HTTP port")
+	// start performance profiling if the --profile flag is set
+	//go run ./cmd/web api --profile
+	//go tool pprof cpu.pprof
+	//go tool pprof mem.pprof
 	rootCmd.PersistentFlags().BoolVarP(&profile, "profile", "", false, "enable profiling")
 
 	rootCmd.AddCommand(apiCmd(ctx, cfg))

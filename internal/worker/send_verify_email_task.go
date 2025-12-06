@@ -7,9 +7,9 @@ import (
 	"fmt"
 
 	"github.com/hibiken/asynq"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/utils"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
 )
 
 func (distributor *RedisTaskDistributor) SendVerifyAccountEmail(ctx context.Context, payload *PayloadVerifyEmail, options ...asynq.Option) error {

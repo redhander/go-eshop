@@ -7,11 +7,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
 )
 
 // --- Public API ---
@@ -23,9 +23,9 @@ import (
 // @Produce json
 // @Param page query int false "Page number"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[[]CategoryDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.BrandDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /shop/brands [get]
 func (sv *Server) GetShopBrandsHandler(c *gin.Context) {
 	var queries models.PaginationQuery
@@ -83,9 +83,9 @@ func (sv *Server) GetShopBrandsHandler(c *gin.Context) {
 // @Tags Brands
 // @Produce json
 // @Param slug path string true "Brand slug"
-// @Success 200 {object} ApiResponse[[]CategoryDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.BrandDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /shop/brands/{slug} [get]
 func (sv *Server) GetShopBrandBySlugHandler(c *gin.Context) {
 	var param models.URISlugParam
@@ -147,10 +147,10 @@ func (sv *Server) GetShopBrandBySlugHandler(c *gin.Context) {
 // @ID create-Brand
 // @Accept json
 // @Produce json
-// @Param request body CreateCategoryRequest true "Brand request"
-// @Success 201 {object} ApiResponse[CategoryDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param request body models.CreateCategoryModel true "Brand request"
+// @Success 201 {object} dto.ApiResponse[dto.BrandDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/brands [post]
 func (sv *Server) CreateBrandHandler(c *gin.Context) {
 	var req models.CreateCategoryModel
@@ -193,9 +193,9 @@ func (sv *Server) CreateBrandHandler(c *gin.Context) {
 // @Produce json
 // @Param page query int false "Page number"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[[]CategoryDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.BrandDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /brands [get]
 func (sv *Server) GetBrandsHandler(c *gin.Context) {
 	var queries models.PaginationQuery
@@ -248,9 +248,9 @@ func (sv *Server) GetBrandsHandler(c *gin.Context) {
 // @Tags Admin
 // @Produce json
 // @Param id path int true "Brand ID"
-// @Success 200 {object} ApiResponse[CategoryDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.BrandDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/brands/{id} [get]
 func (sv *Server) GetBrandByIDHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -290,10 +290,10 @@ func (sv *Server) GetBrandByIDHandler(c *gin.Context) {
 // @Produce json
 // @Tags Admin
 // @Param id path int true "Brand ID"
-// @Param request body UpdateCategoryRequest true "Brand request"
-// @Success 200 {object} ApiResponse[CategoryDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param request body models.UpdateCategoryModel true "Brand request"
+// @Success 200 {object} dto.ApiResponse[dto.BrandDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/brands/{id} [put]
 func (sv *Server) UpdateBrandHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -373,9 +373,9 @@ func (sv *Server) UpdateBrandHandler(c *gin.Context) {
 // @Tags Admin
 // @Produce json
 // @Param id path int true "Brand ID"
-// @Success 204 {object} ApiResponse[bool]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 204 {object} dto.ApiResponse[bool]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/brands/{id} [delete]
 func (sv *Server) DeleteBrandHandler(c *gin.Context) {
 	var colID models.UriIDParam

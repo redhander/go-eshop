@@ -7,9 +7,9 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
 )
 
 // @Summary Create an attribute
@@ -17,10 +17,10 @@ import (
 // @Tags attributes
 // @Accept json
 // @Produce json
-// @Param params body AttributeValuesReq true "Attribute name"
-// @Success 201 {object} ApiResponse[AttributeRespModel]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param params body models.AttributeModel true "Attribute name"
+// @Success 201 {object} dto.ApiResponse[dto.AttributeDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes [post]
 func (sv *Server) CreateAttributeHandler(c *gin.Context) {
 	var req models.AttributeModel
@@ -49,9 +49,9 @@ func (sv *Server) CreateAttributeHandler(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param id path int true "Attribute ID"
-// @Success 200 {object} ApiResponse[AttributeRespModel]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.AttributeDetail]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes/{id} [get]
 func (sv *Server) GetAttributeByIDHandler(c *gin.Context) {
 	var attributeParam models.AttributeParam
@@ -93,8 +93,8 @@ func (sv *Server) GetAttributeByIDHandler(c *gin.Context) {
 // @Tags attributes
 // @Accept json
 // @Produce json
-// @Success 200 {object} ApiResponse[[]AttributeRespModel]
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.AttributeDetail]
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes [get]
 func (sv *Server) GetAttributesHandler(c *gin.Context) {
 	var queries models.AttributesQuery
@@ -143,9 +143,9 @@ func (sv *Server) GetAttributesHandler(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param id path string true "Product ID"
-// @Success 200 {object} ApiResponse[[]AttributeRespModel]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.AttributeDetail]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes/product/{id} [get]
 func (sv *Server) GetAttributeValuesForProductHandler(c *gin.Context) {
 	var uri models.UriIDParam
@@ -195,16 +195,15 @@ func (sv *Server) GetAttributeValuesForProductHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, dto.CreateDataResp(c, resp, nil, nil))
 }
 
-// @Summary Update an attribute
 // @Description Update an attribute
 // @Tags attributes
 // @Accept json
 // @Produce json
 // @Param id path int true "Attribute ID"
-// @Param params body AttributeRequest true "Attribute name"
-// @Success 200 {object} ApiResponse[repository.Attribute]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param params body models.AttributeModel true "Attribute name"
+// @Success 200 {object} dto.ApiResponse[dto.AttributeDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes/{id} [put]
 func (sv *Server) UpdateAttributeHandler(c *gin.Context) {
 	var param models.AttributeParam
@@ -243,10 +242,10 @@ func (sv *Server) UpdateAttributeHandler(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param id path int true "Attribute ID"
-// @Param params body AttributeValuesReq true "Attribute value"
-// @Success 200 {object} ApiResponse[bool]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param params body models.AttributeValueModel true "Attribute value"
+// @Success 200 {object} dto.ApiResponse[bool]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes/{id}/create [post]
 func (sv *Server) AddAttributeValueHandler(c *gin.Context) {
 	var param models.AttributeParam
@@ -284,10 +283,10 @@ func (sv *Server) AddAttributeValueHandler(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param id path int true "Attribute ID"
-// @Param params body AttributeValuesReq true "Attribute value"
-// @Success 200 {object} ApiResponse[bool]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param params body models.AttributeValueModel true "Attribute value"
+// @Success 200 {object} dto.ApiResponse[bool]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /attributes/{id}/update/{valueId} [put]
 func (sv *Server) UpdateAttrValueHandler(c *gin.Context) {
 	var param models.AttributeParam

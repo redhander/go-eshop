@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
 )
 
 // --- Public API ---
@@ -22,7 +22,7 @@ import (
 // @Tags Collections
 // @Produce json
 // @Param slug path string true "Collection slug"
-// @Success 200 {object} ApiResponse[dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -90,7 +90,7 @@ func (sv *Server) GetCollectionBySlugHandler(c *gin.Context) {
 // @Tags Admin
 // @Produce json
 // @Param request body models.CreateCategoryModel true "Collection info"
-// @Success 201 {object} ApiResponse[dto.CategoryDetail]
+// @Success 201 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /admin/collections [post]
@@ -141,7 +141,7 @@ func (sv *Server) CreateCollectionHandler(c *gin.Context) {
 // @Produce json
 // @Param page query int false "Page number"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /admin/collections [get]
@@ -184,7 +184,7 @@ func (sv *Server) GetCollectionsHandler(c *gin.Context) {
 // @Tags Admin
 // @Produce json
 // @Param id path int true "Collection ID"
-// @Success 200 {object} ApiResponse[dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -230,7 +230,7 @@ func (sv *Server) GetCollectionByIDHandler(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Collection ID"
 // @Param request body models.CreateCategoryModel true "Collection info"
-// @Success 200 {object} ApiResponse[dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /admin/collections/{id} [put]

@@ -7,12 +7,12 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/payment"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/pkg/payment"
 )
 
 func (sv *Server) getStripeConfig(c *gin.Context) {
@@ -24,14 +24,14 @@ func (sv *Server) getStripeConfig(c *gin.Context) {
 // @Tags payment
 // @Accept json
 // @Produce json
-// @Param request body PaymentRequest true "Payment request"
+// @Param request body models.PaymentModel true "Payment request"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[PaymentResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 403 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.PaymentIntentSecret]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 403 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /payment [post]
 func (sv *Server) CreatePaymentIntentHandler(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -131,12 +131,12 @@ func (sv *Server) CreatePaymentIntentHandler(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[PaymentResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 403 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.PaymentDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 403 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /payment/{id} [get]
 func (sv *Server) getPaymentHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -179,12 +179,12 @@ func (sv *Server) getPaymentHandler(c *gin.Context) {
 // @Produce json
 // @Param paymentId path string true "Payment ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[PaymentResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 403 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.PaymentDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 403 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /payment/{paymentId} [get]
 func (sv *Server) changePaymentStatusHandler(c *gin.Context) {
 	var param models.UriIDParam

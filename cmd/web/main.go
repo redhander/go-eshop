@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/thanhphuocnguyen/go-eshop/internal/cmd"
+	"github.com/redhander/go-eshop/internal/cmd"
 )
 
 var InterruptSignals = []os.Signal{

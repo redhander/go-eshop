@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/google/uuid"
+	"github.com/redhander/go-eshop/internal/utils"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
 )
 
 type CustomerInfoTxArgs struct {

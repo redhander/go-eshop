@@ -7,10 +7,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/pkg/auth"
 )
 
 // CreateAddressHandler godoc
@@ -19,10 +19,10 @@ import (
 // @Tags addresses
 // @Accept json
 // @Produce json
-// @Param input body CreateAddressRequest true "Create Address"
-// @Success 200 {object} ApiResponse[AddressResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
+// @Param input body models.CreateAddress true "Create Address"
+// @Success 200 {object} dto.ApiResponse[dto.AddressDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
 // @Router /users/addresses [post]
 func (sv *Server) CreateAddressHandler(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -92,9 +92,9 @@ func (sv *Server) CreateAddressHandler(c *gin.Context) {
 // @Produce json
 // @Param page query int false "Page number"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[[]AddressResponse]
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.AddressDetail]
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /users/addresses [get]
 func (sv *Server) GetAddressesHandlers(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -123,12 +123,12 @@ func (sv *Server) GetAddressesHandlers(c *gin.Context) {
 // @Accept json
 // @Produce json
 // @Param id path int true "Address ID"
-// @Param input body UpdateAddressRequest true "Update Address"
-// @Success 200 {object} ApiResponse[AddressResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.UpdateAddress true "Update Address"
+// @Success 200 {object} dto.ApiResponse[dto.AddressDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /users/addresses/{id} [put]
 func (sv *Server) UpdateAddressHandlers(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -215,9 +215,9 @@ func (sv *Server) UpdateAddressHandlers(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Address ID"
 // @Success 204 {object} nil
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
 // @Router /users/addresses/{id} [delete]
 func (sv *Server) RemoveAddressHandlers(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -269,9 +269,9 @@ func (sv *Server) RemoveAddressHandlers(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Address ID"
 // @Success 204 {object} nil
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
 // @Router /users/addresses/{id}/default [put]
 func (sv *Server) SetDefaultAddressHandler(c *gin.Context) {
 	authPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)

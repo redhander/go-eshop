@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/internal/utils"
 )
 
 type UpdateDiscountTxArgs struct {

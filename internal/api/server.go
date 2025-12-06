@@ -4,15 +4,14 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-
-	"github.com/thanhphuocnguyen/go-eshop/config"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/worker"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
-	cachesrv "github.com/thanhphuocnguyen/go-eshop/pkg/cache"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/payment"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/upload"
+	"github.com/redhander/go-eshop/config"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/worker"
+	"github.com/redhander/go-eshop/pkg/auth"
+	cachesrv "github.com/redhander/go-eshop/pkg/cache"
+	"github.com/redhander/go-eshop/pkg/payment"
+	"github.com/redhander/go-eshop/pkg/upload"
 )
 
 // gin-swagger middleware

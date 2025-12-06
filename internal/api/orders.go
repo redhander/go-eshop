@@ -8,13 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/pkg/auth"
+	"github.com/redhander/go-eshop/pkg/payment"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/payment"
 )
 
 // @Summary List orders
@@ -27,10 +27,10 @@ import (
 // @Param status query string false "Filter by status"
 // @Param payment_status query string false "Filter by payment status"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[[]OrderListResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.OrderListItem]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /order/list [get]
 func (sv *Server) getOrdersHandler(c *gin.Context) {
 	tokenPayload, ok := c.MustGet(AuthPayLoad).(*auth.TokenPayload)
@@ -97,10 +97,10 @@ func (sv *Server) getOrdersHandler(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} OrderDetailResponse
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.OrderDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /order/{orderId} [get]
 func (sv *Server) getOrderDetailHandler(c *gin.Context) {
 	var params models.UriIDParam
@@ -226,7 +226,7 @@ func (sv *Server) getOrderDetailHandler(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[bool]
+// @Success 200 {object} dto.ApiResponse[bool]
 // @Failure 400 {object} ErrorResp
 // @Failure 401 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -292,7 +292,7 @@ func (sv *Server) confirmOrderPayment(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[OrderListResponse]
+// @Success 200 {object} dto.ApiResponse[dto.OrderListItem]
 // @Failure 400 {object} ErrorResp
 // @Failure 401 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -364,10 +364,10 @@ func (sv *Server) cancelOrder(c *gin.Context) {
 // @Param id path int true "Order ID"
 // @Param status body string true "Status"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[OrderListResponse]
-// @Failure 400 {object} ErrorResp
-// @Failure 401 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.OrderListItem]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /order/{orderId}/status [put]
 func (sv *Server) changeOrderStatus(c *gin.Context) {
 	var params models.UriIDParam
@@ -440,7 +440,7 @@ func (sv *Server) changeOrderStatus(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[OrderListResponse]
+// @Success 200 {object} dto.ApiResponse[dto.OrderListItem]
 // @Failure 400 {object} ErrorResp
 // @Failure 401 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -503,10 +503,10 @@ func (sv *Server) refundOrder(c *gin.Context) {
 // @Param pageSize query int false "Page size"
 // @Param status query string false "Filter by status"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[[]OrderListResponse]
-// @Failure 401 {object} ErrorResp
-// @Failure 403 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.OrderListItem]
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 403 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/orders [get]
 func (sv *Server) getAdminOrdersHandler(c *gin.Context) {
 	var orderListQuery models.OrderListQuery
@@ -593,11 +593,11 @@ func (sv *Server) getAdminOrdersHandler(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Order ID"
 // @Security BearerAuth
-// @Success 200 {object} ApiResponse[OrderDetailResponse]
-// @Failure 401 {object} ErrorResp
-// @Failure 403 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.OrderDetail]
+// @Failure 401 {object} dto.ErrorResp
+// @Failure 403 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/orders/{id} [get]
 func (sv *Server) getAdminOrderDetailHandler(c *gin.Context) {
 	// Reuse the existing order detail handler since admin has access to all orders

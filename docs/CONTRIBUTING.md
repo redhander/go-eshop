@@ -61,7 +61,7 @@ Before contributing, ensure you have:
 
 2. **Set Up Remote**
    ```bash
-   git remote add upstream https://github.com/thanhphuocnguyen/go-eshop.git
+   git remote add upstream https://github.com/redhander/go-eshop.git
    git remote -v
    ```
 

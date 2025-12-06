@@ -7,10 +7,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/mitchellh/mapstructure"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
 )
 
 // CreateDiscountHandler godoc
@@ -19,10 +19,10 @@ import (
 // @Tags discounts
 // @Accept  json
 // @Produce  json
-// @Param input body CreateDiscountRequest true "Discount info"
-// @Success 201 {object} ApiResponse[DiscountDetailResponseModel]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.AddDiscountModel true "Discount info"
+// @Success 201 {object} dto.ApiResponse[dto.DiscountDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/discounts [post]
 func (sv *Server) CreateDiscountHandler(c *gin.Context) {
 	// Create a new discount
@@ -69,9 +69,9 @@ func (sv *Server) CreateDiscountHandler(c *gin.Context) {
 // @Param search query string false "Search by code"
 // @Param discountType query string false "Discount type" default(percentage)
 // @Param isActive query bool false "Is active" default(true)
-// @Success 200 {object} ApiResponse[[]DiscountListItemResponseModel]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.DiscountListItem]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /discounts [get]
 func (sv *Server) GetDiscountsHandler(c *gin.Context) {
 	var queries models.DiscountListQuery
@@ -148,7 +148,7 @@ func (sv *Server) GetDiscountsHandler(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "Discount ID"
-// @Success 200 {object} ApiResponse[DiscountDetailResponseModel]
+// @Success 200 {object} dto.ApiResponse[dto.DiscountDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -228,10 +228,10 @@ func (sv *Server) GetDiscountByIDHandler(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "Discount ID"
-// @Param input body UpdateDiscountRequest true "Discount info"
-// @Success 200 {object} ApiResponse[string]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.UpdateDiscountModel true "Discount info"
+// @Success 200 {object} dto.ApiResponse[string]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /discounts/{id} [put]
 func (sv *Server) UpdateDiscountHandler(c *gin.Context) {
 	// Update discount by ID
@@ -325,10 +325,10 @@ func (sv *Server) DeleteDiscountHandler(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "Discount ID"
-// @Param input body AddDiscountRuleRequest true "Discount rule info"
-// @Success 201 {object} ApiResponse[string]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.AddDiscountRuleModel true "Discount rule info"
+// @Success 201 {object} dto.ApiResponse[string]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/discounts/{id}/rules [post]
 func (sv *Server) AddDiscountRuleHandler(c *gin.Context) {
 	// Add a discount rule to a discount
@@ -420,9 +420,9 @@ func (sv *Server) AddDiscountRuleHandler(c *gin.Context) {
 // @Accept  json
 // @Produce  json
 // @Param id path string true "Discount ID"
-// @Success 200 {object} ApiResponse[[]DiscountRule]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.DiscountRuleDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/discounts/{id}/rules [get]
 func (sv *Server) GetDiscountRulesHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -457,10 +457,10 @@ func (sv *Server) GetDiscountRulesHandler(c *gin.Context) {
 // @Produce  json
 // @Param id path string true "Discount ID"
 // @Param ruleId path string true "Rule ID"
-// @Success 200 {object} ApiResponse[DiscountRule]
-// @Failure 400 {object} ErrorResp
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.DiscountRuleDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/discounts/{id}/rules/{ruleId} [get]
 func (sv *Server) GetDiscountRuleByIDHandler(c *gin.Context) {
 	var param models.UriRuleIDParam
@@ -491,10 +491,10 @@ func (sv *Server) GetDiscountRuleByIDHandler(c *gin.Context) {
 // @Produce  json
 // @Param id path string true "Discount ID"
 // @Param ruleId path string true "Rule ID"
-// @Param input body UpdateDiscountRuleModel true "Updated discount rule info"
-// @Success 200 {object} ApiResponse[string]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param input body models.UpdateDiscountRuleModel true "Updated discount rule info"
+// @Success 200 {object} dto.ApiResponse[string]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/discounts/{id}/rules/{ruleId} [put]
 func (sv *Server) UpdateDiscountRuleHandler(c *gin.Context) {
 	var param models.UriRuleIDParam

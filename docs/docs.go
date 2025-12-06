@@ -15,256 +15,6 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/address": {
-            "get": {
-                "description": "Get list of addresses",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "address"
-                ],
-                "summary": "Get list of addresses",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Page number",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Page size",
-                        "name": "pageSize",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_AddressResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Create a new address",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "address"
-                ],
-                "summary": "Create a new address",
-                "parameters": [
-                    {
-                        "description": "Create Address",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/api.CreateAddressRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_AddressResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
-        "/address/{id}": {
-            "put": {
-                "description": "Update an address",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "address"
-                ],
-                "summary": "Update an address",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Address ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "Update Address",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/api.UpdateAddressRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_AddressResponse"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            },
-            "delete": {
-                "description": "Remove an address",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "address"
-                ],
-                "summary": "Remove an address",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Address ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
-        "/address/{id}/default": {
-            "put": {
-                "description": "Set default address",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "address"
-                ],
-                "summary": "Set default address",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "Address ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "204": {
-                        "description": "No Content"
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
         "/admin/brands": {
             "post": {
                 "description": "Create a new Brand",
@@ -286,7 +36,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateCategoryRequest"
+                            "$ref": "#/definitions/models.CreateCategoryModel"
                         }
                     }
                 ],
@@ -294,19 +44,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_BrandDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -339,19 +89,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_BrandDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -383,7 +133,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateCategoryRequest"
+                            "$ref": "#/definitions/models.UpdateCategoryModel"
                         }
                     }
                 ],
@@ -391,19 +141,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_BrandDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -434,19 +184,19 @@ const docTemplate = `{
                     "204": {
                         "description": "No Content",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-bool"
+                            "$ref": "#/definitions/dto.ApiResponse-bool"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -484,19 +234,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -521,7 +271,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateCategoryRequest"
+                            "$ref": "#/definitions/models.CreateCategoryModel"
                         }
                     }
                 ],
@@ -529,19 +279,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -574,25 +324,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -624,7 +374,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateCategoryRequest"
+                            "$ref": "#/definitions/models.UpdateCategoryModel"
                         }
                     }
                 ],
@@ -632,19 +382,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_Category"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -678,13 +428,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -722,19 +472,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -759,7 +509,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateCategoryRequest"
+                            "$ref": "#/definitions/models.CreateCategoryModel"
                         }
                     }
                 ],
@@ -767,19 +517,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -812,25 +562,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -862,7 +612,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateCategoryRequest"
+                            "$ref": "#/definitions/models.CreateCategoryModel"
                         }
                     }
                 ],
@@ -870,19 +620,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -916,13 +666,315 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/discounts": {
+            "post": {
+                "description": "Create a new discount",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "discounts"
+                ],
+                "summary": "Create a new discount",
+                "parameters": [
+                    {
+                        "description": "Discount info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.AddDiscountModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_DiscountDetail"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/discounts/{id}/rules": {
+            "get": {
+                "description": "Get all discount rules for a specific discount",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "discounts"
+                ],
+                "summary": "Get all discount rules for a discount",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Discount ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_DiscountRuleDetail"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Add a discount rule to a discount",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "discounts"
+                ],
+                "summary": "Add a discount rule to a discount",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Discount ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Discount rule info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.AddDiscountRuleModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/discounts/{id}/rules/{ruleId}": {
+            "get": {
+                "description": "Get a specific discount rule by ID",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "discounts"
+                ],
+                "summary": "Get a specific discount rule by ID",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Discount ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Rule ID",
+                        "name": "ruleId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_DiscountRuleDetail"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "description": "Update a discount rule",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "discounts"
+                ],
+                "summary": "Update a discount rule",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Discount ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Rule ID",
+                        "name": "ruleId",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Updated discount rule info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateDiscountRuleModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-string"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete a discount rule",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "discounts"
+                ],
+                "summary": "Delete a discount rule",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Discount ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "Rule ID",
+                        "name": "ruleId",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -970,25 +1022,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_OrderListResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_OrderListItem"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1025,31 +1077,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_OrderDetailResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_OrderDetail"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1090,20 +1142,20 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/api.ApiResponse-array_api_ProductSummary"
+                                "$ref": "#/definitions/dto.ApiResponse-array_dto_ProductListItem"
                             }
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1149,25 +1201,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_ProductRatingModel"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_ProductRatingDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1208,19 +1260,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1261,19 +1313,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1314,19 +1366,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1363,25 +1415,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_UserDetail"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_UserDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1413,25 +1465,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_UserDetail"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_UserDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1454,13 +1506,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_AttributeRespModel"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_AttributeDetail"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1484,7 +1536,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.AttributeValuesReq"
+                            "$ref": "#/definitions/models.AttributeModel"
                         }
                     }
                 ],
@@ -1492,19 +1544,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_AttributeRespModel"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_AttributeDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1536,19 +1588,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_AttributeRespModel"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_AttributeDetail"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1580,19 +1632,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_AttributeRespModel"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_AttributeDetail"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1608,7 +1660,6 @@ const docTemplate = `{
                 "tags": [
                     "attributes"
                 ],
-                "summary": "Update an attribute",
                 "parameters": [
                     {
                         "type": "integer",
@@ -1623,7 +1674,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.AttributeRequest"
+                            "$ref": "#/definitions/models.AttributeModel"
                         }
                     }
                 ],
@@ -1631,19 +1682,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_Attribute"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_AttributeDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1676,7 +1727,7 @@ const docTemplate = `{
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1709,7 +1760,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.AttributeValuesReq"
+                            "$ref": "#/definitions/models.AttributeValueModel"
                         }
                     }
                 ],
@@ -1717,19 +1768,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-bool"
+                            "$ref": "#/definitions/dto.ApiResponse-bool"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1764,13 +1815,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1803,7 +1854,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.AttributeValuesReq"
+                            "$ref": "#/definitions/models.AttributeValueModel"
                         }
                     }
                 ],
@@ -1811,19 +1862,146 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-bool"
+                            "$ref": "#/definitions/dto.ApiResponse-bool"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "description": "Login to the system",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Login to the system",
+                "parameters": [
+                    {
+                        "description": "User info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.LoginModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_LoginResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/refresh-token": {
+            "post": {
+                "description": "Refresh token",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Refresh token",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_RefreshToken"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/register": {
+            "post": {
+                "description": "Create a new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "users"
+                ],
+                "summary": "Create a new user",
+                "parameters": [
+                    {
+                        "description": "User info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.RegisterModel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_UserDetail"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1861,19 +2039,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_BrandDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -1896,37 +2074,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CartDetailResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CartDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -1947,43 +2125,78 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CartDetailResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CartDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
             }
         },
-        "/carts/CheckoutHandler": {
+        "/carts/available-discounts": {
+            "get": {
+                "description": "get cart discounts",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "carts"
+                ],
+                "summary": "Get cart discounts",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_CartDiscount"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/carts/checkout": {
             "post": {
                 "description": "update product items in the cart",
                 "consumes": [
@@ -2003,7 +2216,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CheckoutRequest"
+                            "$ref": "#/definitions/models.CheckoutModel"
                         }
                     }
                 ],
@@ -2011,37 +2224,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_CreatePaymentResult"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_PaymentResult"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2067,66 +2280,31 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
-        "/carts/discounts": {
-            "get": {
-                "description": "get cart discounts",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "carts"
-                ],
-                "summary": "Get cart discounts",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_repository_GetAvailableDiscountsForCartRow"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -2158,37 +2336,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -2214,7 +2392,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateCartItemQtyRequest"
+                            "$ref": "#/definitions/models.UpdateCartItemQtyModel"
                         }
                     }
                 ],
@@ -2222,19 +2400,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2272,19 +2450,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_AdminCategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_AdminCategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -2323,19 +2501,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -2368,25 +2546,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_CategoryDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -2445,63 +2623,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_DiscountListItemResponseModel"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_DiscountListItem"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            },
-            "post": {
-                "description": "Create a new discount",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "discounts"
-                ],
-                "summary": "Create a new discount",
-                "parameters": [
-                    {
-                        "description": "Discount info",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/api.CreateDiscountRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Created",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_DiscountDetailResponseModel"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2533,33 +2667,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_DiscountDetailResponseModel"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_DiscountDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
-            }
-        },
-        "/discounts/{id}/categories": {
-            "get": {
-                "description": "Get discount categories by ID",
+            },
+            "put": {
+                "description": "Update discount by ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -2569,7 +2701,7 @@ const docTemplate = `{
                 "tags": [
                     "discounts"
                 ],
-                "summary": "Get discount categories by ID",
+                "summary": "Update discount by ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -2579,51 +2711,38 @@ const docTemplate = `{
                         "required": true
                     },
                     {
-                        "type": "integer",
-                        "default": 1,
-                        "description": "Page number",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "default": 10,
-                        "description": "Page size",
-                        "name": "pageSize",
-                        "in": "query"
+                        "description": "Discount info",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateDiscountModel"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_DiscountLinkObject"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
-            }
-        },
-        "/discounts/{id}/products": {
-            "get": {
-                "description": "Get discount products by ID",
+            },
+            "delete": {
+                "description": "Delete discount by ID",
                 "consumes": [
                     "application/json"
                 ],
@@ -2633,7 +2752,7 @@ const docTemplate = `{
                 "tags": [
                     "discounts"
                 ],
-                "summary": "Get discount products by ID",
+                "summary": "Delete discount by ID",
                 "parameters": [
                     {
                         "type": "string",
@@ -2641,109 +2760,22 @@ const docTemplate = `{
                         "name": "id",
                         "in": "path",
                         "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "default": 1,
-                        "description": "Page number",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "default": 10,
-                        "description": "Page size",
-                        "name": "pageSize",
-                        "in": "query"
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_DiscountLinkObject"
-                        }
+                    "204": {
+                        "description": "No Content"
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
-        "/discounts/{id}/users": {
-            "get": {
-                "description": "Get discount users by ID",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "discounts"
-                ],
-                "summary": "Get discount users by ID",
-                "parameters": [
-                    {
-                        "type": "string",
-                        "description": "Discount ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "type": "integer",
-                        "default": 1,
-                        "description": "Page number",
-                        "name": "page",
-                        "in": "query"
-                    },
-                    {
-                        "type": "integer",
-                        "default": 10,
-                        "description": "Page size",
-                        "name": "pageSize",
-                        "in": "query"
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_DiscountLinkObject"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -2775,19 +2807,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_ImageResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_ImageResponse"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2819,19 +2851,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-bool"
+                            "$ref": "#/definitions/dto.ApiResponse-bool"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2885,25 +2917,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_OrderListResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_OrderListItem"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2940,25 +2972,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.OrderDetailResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_OrderDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -2995,25 +3027,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_OrderListResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_OrderListItem"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3050,25 +3082,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-bool"
+                            "$ref": "#/definitions/dto.ApiResponse-bool"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3105,25 +3137,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_OrderListResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_OrderListItem"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3169,25 +3201,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_OrderListResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_OrderListItem"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3218,7 +3250,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.PaymentRequest"
+                            "$ref": "#/definitions/models.PaymentModel"
                         }
                     }
                 ],
@@ -3226,37 +3258,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_PaymentResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_PaymentIntentSecret"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3293,37 +3325,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_PaymentResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_PaymentDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3360,37 +3392,37 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_PaymentResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_PaymentDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3431,20 +3463,20 @@ const docTemplate = `{
                         "schema": {
                             "type": "array",
                             "items": {
-                                "$ref": "#/definitions/api.ApiResponse-array_api_ProductSummary"
+                                "$ref": "#/definitions/dto.ApiResponse-array_dto_ProductSummary"
                             }
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3468,7 +3500,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateProductReq"
+                            "$ref": "#/definitions/models.CreateProductModel"
                         }
                     }
                 ],
@@ -3476,19 +3508,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_Product"
+                            "$ref": "#/definitions/dto.ApiResponse-repository_Product"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3520,19 +3552,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3555,19 +3587,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3590,19 +3622,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_VariantModelDto"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_VariantDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3626,7 +3658,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.CreateProdVariantReq"
+                            "$ref": "#/definitions/models.CreateProdVariantModel"
                         }
                     }
                 ],
@@ -3634,19 +3666,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3685,19 +3717,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_VariantModelDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_VariantDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3723,7 +3755,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateProdVariantReq"
+                            "$ref": "#/definitions/models.UpdateProdVariantModel"
                         }
                     }
                 ],
@@ -3731,19 +3763,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_ProductVariant"
+                            "$ref": "#/definitions/dto.ApiResponse-repository_ProductVariant"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3782,19 +3814,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_ProductVariant"
+                            "$ref": "#/definitions/dto.ApiResponse-repository_ProductVariant"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3826,19 +3858,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_ProductDetailDto"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_ProductDetail"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3869,7 +3901,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateProductReq"
+                            "$ref": "#/definitions/models.UpdateProductModel"
                         }
                     }
                 ],
@@ -3877,19 +3909,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_Product"
+                            "$ref": "#/definitions/dto.ApiResponse-repository_Product"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -3919,19 +3951,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -3965,6 +3997,7 @@ const docTemplate = `{
                     },
                     {
                         "type": "number",
+                        "format": "float64",
                         "description": "Rating (1-5)",
                         "name": "rating",
                         "in": "formData",
@@ -3995,25 +4028,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_ProductRatingModel"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_ProductRatingDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4050,31 +4083,31 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_ProductRatingModel"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_ProductRatingDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4120,25 +4153,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_ProductRatingModel"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_ProductRatingDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4186,25 +4219,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4250,25 +4283,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-string"
+                            "$ref": "#/definitions/dto.ApiResponse-string"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "403": {
                         "description": "Forbidden",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4306,19 +4339,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_BrandDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -4351,27 +4384,27 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-array_api_CategoryDto"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_BrandDetail"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
             }
         },
-        "/users": {
-            "post": {
-                "description": "Create a new user",
+        "/users/addresses": {
+            "get": {
+                "description": "Get list of addresses",
                 "consumes": [
                     "application/json"
                 ],
@@ -4379,83 +4412,241 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "users"
+                    "addresses"
                 ],
-                "summary": "Create a new user",
+                "summary": "Get list of addresses",
                 "parameters": [
                     {
-                        "description": "User info",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/api.RegisterRequestBody"
-                        }
+                        "type": "integer",
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Page size",
+                        "name": "pageSize",
+                        "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_UserDetail"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/LoginHandler": {
-            "post": {
-                "description": "Login to the system",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "users"
-                ],
-                "summary": "Login to the system",
-                "parameters": [
-                    {
-                        "description": "User info",
-                        "name": "input",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/api.LoginRequest"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_LoginResponse"
+                            "$ref": "#/definitions/dto.ApiResponse-array_dto_AddressDetail"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create a new addresses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "addresses"
+                ],
+                "summary": "Create a new addresses",
+                "parameters": [
+                    {
+                        "description": "Create Address",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.CreateAddress"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_AddressDetail"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/addresses/{id}": {
+            "put": {
+                "description": "Update an addresses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "addresses"
+                ],
+                "summary": "Update an addresses",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Address ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Update Address",
+                        "name": "input",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.UpdateAddress"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ApiResponse-dto_AddressDetail"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Remove an addresses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "addresses"
+                ],
+                "summary": "Remove an addresses",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Address ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    }
+                }
+            }
+        },
+        "/users/addresses/{id}/default": {
+            "put": {
+                "description": "Set default addresses",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "addresses"
+                ],
+                "summary": "Set default addresses",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "Address ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content"
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/dto.ErrorResp"
                         }
                     }
                 }
@@ -4478,54 +4669,19 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_UserDetail"
+                            "$ref": "#/definitions/dto.ApiResponse-dto_UserDetail"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    }
-                }
-            }
-        },
-        "/users/refresh-token": {
-            "post": {
-                "description": "Refresh token",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "users"
-                ],
-                "summary": "Refresh token",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-api_RefreshTokenResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4533,11 +4689,6 @@ const docTemplate = `{
         },
         "/users/verify-email": {
             "get": {
-                "security": [
-                    {
-                        "BearerAuth": []
-                    }
-                ],
                 "description": "Verify email",
                 "consumes": [
                     "application/json"
@@ -4572,25 +4723,25 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4619,19 +4770,19 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4657,7 +4808,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/api.UpdateUserRequest"
+                            "$ref": "#/definitions/models.UpdateUserModel"
                         }
                     }
                 ],
@@ -4665,25 +4816,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/api.ApiResponse-repository_UpdateUserRow"
+                            "$ref": "#/definitions/dto.ApiResponse-repository_UpdateUserRow"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4709,13 +4860,13 @@ const docTemplate = `{
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp"
+                            "$ref": "#/definitions/api.ErrorResp"
                         }
                     }
                 }
@@ -4723,7 +4874,18 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "api.AddressResponse": {
+        "api.ErrorResp": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "big.Int": {
+            "type": "object"
+        },
+        "dto.AddressDetail": {
             "type": "object",
             "properties": {
                 "city": {
@@ -4752,7 +4914,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.AdminCategoryDto": {
+        "dto.AdminCategoryDetail": {
             "type": "object",
             "properties": {
                 "createdAt": {
@@ -4773,7 +4935,7 @@ const docTemplate = `{
                 "products": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ProductListDTO"
+                        "$ref": "#/definitions/dto.ProductListItem"
                     }
                 },
                 "published": {
@@ -4787,7 +4949,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.ApiError": {
+        "dto.ApiError": {
             "type": "object",
             "properties": {
                 "code": {
@@ -4801,754 +4963,812 @@ const docTemplate = `{
                 }
             }
         },
-        "api.ApiResponse-api_AddressResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.AddressResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_AttributeRespModel": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.AttributeRespModel"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_CartDetailResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.CartDetailResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_CategoryDto": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.CategoryDto"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_DiscountDetailResponseModel": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.DiscountDetailResponseModel"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_DiscountLinkObject": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.DiscountLinkObject"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_LoginResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.LoginResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_OrderDetailResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.OrderDetailResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_OrderListResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.OrderListResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_PaymentResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.PaymentResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_ProductDetailDto": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.ProductDetailDto"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_ProductRatingModel": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.ProductRatingModel"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_RefreshTokenResponse": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.RefreshTokenResponse"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_UserDetail": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.UserDetail"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-api_VariantModelDto": {
-            "type": "object",
-            "properties": {
-                "data": {
-                    "$ref": "#/definitions/api.VariantModelDto"
-                },
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
-                },
-                "message": {
-                    "type": "string"
-                },
-                "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
-                },
-                "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
-                }
-            }
-        },
-        "api.ApiResponse-array_api_AddressResponse": {
+        "dto.ApiResponse-array_dto_AddressDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AddressResponse"
+                        "$ref": "#/definitions/dto.AddressDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_AdminCategoryDto": {
+        "dto.ApiResponse-array_dto_AdminCategoryDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AdminCategoryDto"
+                        "$ref": "#/definitions/dto.AdminCategoryDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_AttributeRespModel": {
+        "dto.ApiResponse-array_dto_AttributeDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AttributeRespModel"
+                        "$ref": "#/definitions/dto.AttributeDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_CategoryDto": {
+        "dto.ApiResponse-array_dto_BrandDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.CategoryDto"
+                        "$ref": "#/definitions/dto.BrandDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_DiscountListItemResponseModel": {
+        "dto.ApiResponse-array_dto_CartDiscount": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.DiscountListItemResponseModel"
+                        "$ref": "#/definitions/dto.CartDiscount"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_ImageResponse": {
+        "dto.ApiResponse-array_dto_CategoryDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ImageResponse"
+                        "$ref": "#/definitions/dto.CategoryDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_OrderListResponse": {
+        "dto.ApiResponse-array_dto_DiscountListItem": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.OrderListResponse"
+                        "$ref": "#/definitions/dto.DiscountListItem"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_ProductRatingModel": {
+        "dto.ApiResponse-array_dto_DiscountRuleDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ProductRatingModel"
+                        "$ref": "#/definitions/dto.DiscountRuleDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_ProductSummary": {
+        "dto.ApiResponse-array_dto_ImageResponse": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ProductSummary"
+                        "$ref": "#/definitions/dto.ImageResponse"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_UserDetail": {
+        "dto.ApiResponse-array_dto_OrderListItem": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.UserDetail"
+                        "$ref": "#/definitions/dto.OrderListItem"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_api_VariantModelDto": {
+        "dto.ApiResponse-array_dto_ProductListItem": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.VariantModelDto"
+                        "$ref": "#/definitions/dto.ProductListItem"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-array_repository_GetAvailableDiscountsForCartRow": {
+        "dto.ApiResponse-array_dto_ProductRatingDetail": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/repository.GetAvailableDiscountsForCartRow"
+                        "$ref": "#/definitions/dto.ProductRatingDetail"
                     }
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-bool": {
+        "dto.ApiResponse-array_dto_ProductSummary": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ProductSummary"
+                    }
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-array_dto_UserDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.UserDetail"
+                    }
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-array_dto_VariantDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.VariantDetail"
+                    }
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-bool": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "boolean"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-repository_Attribute": {
+        "dto.ApiResponse-dto_AddressDetail": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/repository.Attribute"
+                    "$ref": "#/definitions/dto.AddressDetail"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-repository_Category": {
+        "dto.ApiResponse-dto_AttributeDetail": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/repository.Category"
+                    "$ref": "#/definitions/dto.AttributeDetail"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-repository_CreatePaymentResult": {
+        "dto.ApiResponse-dto_BrandDetail": {
             "type": "object",
             "properties": {
                 "data": {
-                    "$ref": "#/definitions/repository.CreatePaymentResult"
+                    "$ref": "#/definitions/dto.BrandDetail"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-repository_Product": {
+        "dto.ApiResponse-dto_CartDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.CartDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_CategoryDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.CategoryDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_DiscountDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.DiscountDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_DiscountRuleDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.DiscountRuleDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_LoginResponse": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.LoginResponse"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_OrderDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.OrderDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_OrderListItem": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.OrderListItem"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_PaymentDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.PaymentDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_PaymentIntentSecret": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.PaymentIntentSecret"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_PaymentResult": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.PaymentResult"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_ProductDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.ProductDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_ProductRatingDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.ProductRatingDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_RefreshToken": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.RefreshToken"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_UserDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.UserDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-dto_VariantDetail": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "$ref": "#/definitions/dto.VariantDetail"
+                },
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                },
+                "message": {
+                    "type": "string"
+                },
+                "meta": {
+                    "$ref": "#/definitions/dto.MetaInfo"
+                },
+                "pagination": {
+                    "$ref": "#/definitions/dto.Pagination"
+                }
+            }
+        },
+        "dto.ApiResponse-repository_Product": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/repository.Product"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-repository_ProductVariant": {
+        "dto.ApiResponse-repository_ProductVariant": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/repository.ProductVariant"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-repository_UpdateUserRow": {
+        "dto.ApiResponse-repository_UpdateUserRow": {
             "type": "object",
             "properties": {
                 "data": {
                     "$ref": "#/definitions/repository.UpdateUserRow"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.ApiResponse-string": {
+        "dto.ApiResponse-string": {
             "type": "object",
             "properties": {
                 "data": {
                     "type": "string"
                 },
                 "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                    "$ref": "#/definitions/dto.ApiError"
                 },
                 "message": {
                     "type": "string"
                 },
                 "meta": {
-                    "$ref": "#/definitions/api.MetaInfo"
+                    "$ref": "#/definitions/dto.MetaInfo"
                 },
                 "pagination": {
-                    "$ref": "#/definitions/api.Pagination"
+                    "$ref": "#/definitions/dto.Pagination"
                 }
             }
         },
-        "api.AttributeRequest": {
-            "type": "object",
-            "required": [
-                "name"
-            ],
-            "properties": {
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.AttributeRespModel": {
+        "dto.AttributeDetail": {
             "type": "object",
             "properties": {
                 "id": {
@@ -5560,12 +5780,12 @@ const docTemplate = `{
                 "values": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AttributeValue"
+                        "$ref": "#/definitions/dto.AttributeValueDetail"
                     }
                 }
             }
         },
-        "api.AttributeValue": {
+        "dto.AttributeValueDetail": {
             "type": "object",
             "properties": {
                 "id": {
@@ -5579,28 +5799,49 @@ const docTemplate = `{
                 }
             }
         },
-        "api.AttributeValuesReq": {
+        "dto.BrandDetail": {
             "type": "object",
-            "required": [
-                "value"
-            ],
             "properties": {
-                "value": {
+                "description": {
+                    "type": "string"
+                },
+                "displayOrder": {
+                    "type": "integer"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "imageId": {
+                    "type": "string"
+                },
+                "imageUrl": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "published": {
+                    "type": "boolean"
+                },
+                "slug": {
                     "type": "string"
                 }
             }
         },
-        "api.CartDetailResponse": {
+        "dto.CartDetail": {
             "type": "object",
             "properties": {
                 "cartItems": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.CartItemResponse"
+                        "$ref": "#/definitions/dto.CartItemDetail"
                     }
                 },
                 "createdAt": {
                     "type": "string"
+                },
+                "discountAmount": {
+                    "type": "number"
                 },
                 "id": {
                     "type": "string"
@@ -5613,7 +5854,42 @@ const docTemplate = `{
                 }
             }
         },
-        "api.CartItemResponse": {
+        "dto.CartDiscount": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "discountType": {
+                    "type": "string"
+                },
+                "discountValue": {
+                    "type": "number"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "isStackable": {
+                    "type": "boolean"
+                },
+                "maxDiscountAmount": {
+                    "type": "number"
+                },
+                "minOrderValue": {
+                    "type": "number"
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.CartItemDetail": {
             "type": "object",
             "required": [
                 "id",
@@ -5624,8 +5900,11 @@ const docTemplate = `{
                 "attributes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ProductAttribute"
+                        "$ref": "#/definitions/dto.AttributeDetail"
                     }
+                },
+                "discountAmount": {
+                    "type": "number"
                 },
                 "id": {
                     "type": "string"
@@ -5656,7 +5935,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.CategoryDto": {
+        "dto.CategoryDetail": {
             "type": "object",
             "properties": {
                 "createdAt": {
@@ -5677,7 +5956,7 @@ const docTemplate = `{
                 "products": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ProductSummary"
+                        "$ref": "#/definitions/dto.ProductSummary"
                     }
                 },
                 "published": {
@@ -5688,294 +5967,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.CheckoutAddress": {
-            "type": "object",
-            "properties": {
-                "city": {
-                    "type": "string"
-                },
-                "district": {
-                    "type": "string"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "street": {
-                    "type": "string"
-                },
-                "ward": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.CheckoutRequest": {
-            "type": "object",
-            "required": [
-                "paymentMethod"
-            ],
-            "properties": {
-                "address": {
-                    "$ref": "#/definitions/api.CheckoutAddress"
-                },
-                "addressId": {
-                    "type": "string"
-                },
-                "discountCode": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 5
-                },
-                "email": {
-                    "type": "string"
-                },
-                "firstName": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                },
-                "lastName": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                },
-                "paymentGateway": {
-                    "type": "string",
-                    "enum": [
-                        "stripe"
-                    ]
-                },
-                "paymentMethod": {
-                    "type": "string",
-                    "enum": [
-                        "cod",
-                        "stripe"
-                    ]
-                }
-            }
-        },
-        "api.CreateAddressRequest": {
-            "type": "object",
-            "required": [
-                "city",
-                "district",
-                "phone",
-                "street"
-            ],
-            "properties": {
-                "city": {
-                    "type": "string"
-                },
-                "district": {
-                    "type": "string"
-                },
-                "isDefault": {
-                    "type": "boolean"
-                },
-                "phone": {
-                    "type": "string",
-                    "maxLength": 15,
-                    "minLength": 10
-                },
-                "street": {
-                    "type": "string"
-                },
-                "ward": {
-                    "type": "string",
-                    "maxLength": 100
-                }
-            }
-        },
-        "api.CreateCategoryRequest": {
-            "type": "object",
-            "required": [
-                "name",
-                "slug"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "maxLength": 1000
-                },
-                "displayOrder": {
-                    "type": "integer"
-                },
-                "image": {
-                    "$ref": "#/definitions/multipart.FileHeader"
-                },
-                "name": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                },
-                "slug": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                }
-            }
-        },
-        "api.CreateDiscountRequest": {
-            "type": "object",
-            "required": [
-                "code",
-                "discountType",
-                "discountValue",
-                "isActive",
-                "startsAt"
-            ],
-            "properties": {
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "code": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 5
-                },
-                "description": {
-                    "type": "string",
-                    "maxLength": 1000
-                },
-                "discountType": {
-                    "type": "string",
-                    "enum": [
-                        "percentage",
-                        "fixed_amount"
-                    ]
-                },
-                "discountValue": {
-                    "type": "number"
-                },
-                "expiresAt": {
-                    "type": "string"
-                },
-                "isActive": {
-                    "type": "boolean"
-                },
-                "maxDiscountAmount": {
-                    "type": "number"
-                },
-                "minPurchaseAmount": {
-                    "type": "number"
-                },
-                "products": {
-                    "description": "Related entities",
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "startsAt": {
-                    "type": "string"
-                },
-                "usageLimit": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "users": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                }
-            }
-        },
-        "api.CreateProdVariantReq": {
-            "type": "object",
-            "required": [
-                "attributeValues",
-                "isActive",
-                "price",
-                "stockQty"
-            ],
-            "properties": {
-                "attributeValues": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "description": {
-                    "type": "string"
-                },
-                "isActive": {
-                    "type": "boolean"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "stockQty": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "weight": {
-                    "type": "number"
-                }
-            }
-        },
-        "api.CreateProductReq": {
-            "type": "object",
-            "required": [
-                "brandId",
-                "description",
-                "name",
-                "price",
-                "sku",
-                "slug"
-            ],
-            "properties": {
-                "attributes": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "brandId": {
-                    "type": "string"
-                },
-                "categoryIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "collectionIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "description": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                },
-                "price": {
-                    "type": "number"
-                },
-                "shortDescription": {
-                    "type": "string",
-                    "maxLength": 1000
-                },
-                "sku": {
-                    "type": "string",
-                    "maxLength": 100,
-                    "minLength": 3
-                },
-                "slug": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                }
-            }
-        },
-        "api.DiscountDetailResponseModel": {
+        "dto.DiscountDetail": {
             "type": "object",
             "properties": {
                 "code": {
@@ -5993,9 +5985,6 @@ const docTemplate = `{
                 "discountValue": {
                     "type": "number"
                 },
-                "expiresAt": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "string"
                 },
@@ -6008,8 +5997,8 @@ const docTemplate = `{
                 "minPurchase": {
                     "type": "number"
                 },
-                "startsAt": {
-                    "type": "string"
+                "timesUsed": {
+                    "type": "integer"
                 },
                 "updatedAt": {
                     "type": "string"
@@ -6017,32 +6006,21 @@ const docTemplate = `{
                 "usageHistory": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.DiscountUsageHistory"
+                        "$ref": "#/definitions/dto.DiscountUsageHistory"
                     }
                 },
                 "usageLimit": {
                     "type": "integer"
                 },
-                "usedCount": {
-                    "type": "integer"
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
                 }
             }
         },
-        "api.DiscountLinkObject": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "number"
-                }
-            }
-        },
-        "api.DiscountListItemResponseModel": {
+        "dto.DiscountListItem": {
             "type": "object",
             "properties": {
                 "code": {
@@ -6060,9 +6038,6 @@ const docTemplate = `{
                 "discountValue": {
                     "type": "number"
                 },
-                "expiresAt": {
-                    "type": "string"
-                },
                 "id": {
                     "type": "string"
                 },
@@ -6075,9 +6050,6 @@ const docTemplate = `{
                 "minPurchase": {
                     "type": "number"
                 },
-                "startsAt": {
-                    "type": "string"
-                },
                 "updatedAt": {
                     "type": "string"
                 },
@@ -6086,10 +6058,31 @@ const docTemplate = `{
                 },
                 "usedCount": {
                     "type": "integer"
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
                 }
             }
         },
-        "api.DiscountUsageHistory": {
+        "dto.DiscountRuleDetail": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "ruleType": {
+                    "type": "string"
+                },
+                "ruleValue": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "dto.DiscountUsageHistory": {
             "type": "object",
             "properties": {
                 "amount": {
@@ -6113,7 +6106,15 @@ const docTemplate = `{
                 }
             }
         },
-        "api.GeneralCategoryResponse": {
+        "dto.ErrorResp": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "$ref": "#/definitions/dto.ApiError"
+                }
+            }
+        },
+        "dto.GeneralCategory": {
             "type": "object",
             "properties": {
                 "id": {
@@ -6124,7 +6125,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.ImageResponse": {
+        "dto.ImageResponse": {
             "type": "object",
             "properties": {
                 "assignments": {
@@ -6150,28 +6151,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.LoginRequest": {
-            "type": "object",
-            "required": [
-                "password"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string",
-                    "maxLength": 255
-                },
-                "password": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 6
-                },
-                "username": {
-                    "type": "string",
-                    "maxLength": 32
-                }
-            }
-        },
-        "api.LoginResponse": {
+        "dto.LoginResponse": {
             "type": "object",
             "properties": {
                 "accessToken": {
@@ -6191,7 +6171,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.MetaInfo": {
+        "dto.MetaInfo": {
             "type": "object",
             "properties": {
                 "method": {
@@ -6208,7 +6188,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.OrderDetailResponse": {
+        "dto.OrderDetail": {
             "type": "object",
             "properties": {
                 "createdAt": {
@@ -6224,12 +6204,12 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "paymentInfo": {
-                    "$ref": "#/definitions/api.PaymentInfoModel"
+                    "$ref": "#/definitions/dto.PaymentInfo"
                 },
                 "products": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.OrderItemResponse"
+                        "$ref": "#/definitions/dto.OrderItemDetail"
                     }
                 },
                 "shippingInfo": {
@@ -6243,7 +6223,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.OrderItemResponse": {
+        "dto.OrderItemDetail": {
             "type": "object",
             "properties": {
                 "attributesSnapshot": {
@@ -6268,14 +6248,14 @@ const docTemplate = `{
                     "type": "integer"
                 },
                 "rating": {
-                    "$ref": "#/definitions/api.RatingModel"
+                    "$ref": "#/definitions/dto.RatingDetail"
                 },
                 "variantId": {
                     "type": "string"
                 }
             }
         },
-        "api.OrderListResponse": {
+        "dto.OrderListItem": {
             "type": "object",
             "properties": {
                 "createdAt": {
@@ -6307,7 +6287,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.Pagination": {
+        "dto.Pagination": {
             "type": "object",
             "properties": {
                 "hasNextPage": {
@@ -6330,7 +6310,24 @@ const docTemplate = `{
                 }
             }
         },
-        "api.PaymentInfoModel": {
+        "dto.PaymentDetail": {
+            "type": "object",
+            "properties": {
+                "details": {
+                    "description": "Details contains gateway-specific payment information.\nThe type may vary depending on the payment provider, and is typically a struct or map[string]interface{}."
+                },
+                "gateway": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "status": {
+                    "$ref": "#/definitions/repository.PaymentStatus"
+                }
+            }
+        },
+        "dto.PaymentInfo": {
             "type": "object",
             "properties": {
                 "amount": {
@@ -6359,77 +6356,79 @@ const docTemplate = `{
                 }
             }
         },
-        "api.PaymentRequest": {
+        "dto.PaymentIntentSecret": {
             "type": "object",
-            "required": [
-                "orderId",
-                "paymentMethodId"
-            ],
             "properties": {
+                "clientSecret": {
+                    "type": "string"
+                },
+                "paymentId": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.PaymentResult": {
+            "type": "object",
+            "properties": {
+                "clientSecret": {
+                    "type": "string"
+                },
                 "orderId": {
                     "type": "string"
                 },
-                "paymentMethodId": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.PaymentResponse": {
-            "type": "object",
-            "properties": {
-                "details": {
-                    "description": "Details contains gateway-specific payment information.\nThe type may vary depending on the payment provider, and is typically a struct or map[string]interface{}."
-                },
-                "gateway": {
+                "paymentId": {
                     "type": "string"
                 },
-                "id": {
+                "paymentIntentId": {
                     "type": "string"
                 },
                 "status": {
-                    "$ref": "#/definitions/repository.PaymentStatus"
+                    "type": "string"
+                },
+                "totalPrice": {
+                    "type": "number"
                 }
             }
         },
-        "api.ProductAttribute": {
+        "dto.ProductAttribute": {
             "type": "object",
             "properties": {
-                "attribute_id": {
+                "attributeId": {
                     "type": "integer"
                 },
-                "attribute_name": {
+                "attributeName": {
                     "type": "string"
                 },
-                "attribute_values.": {
+                "attributeValues": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AttributeValue"
+                        "$ref": "#/definitions/dto.AttributeValueDetail"
                     }
                 }
             }
         },
-        "api.ProductDetailDto": {
+        "dto.ProductDetail": {
             "type": "object",
             "properties": {
                 "attributes": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.ProductAttribute"
+                        "$ref": "#/definitions/dto.ProductAttribute"
                     }
                 },
                 "brand": {
-                    "$ref": "#/definitions/api.GeneralCategoryResponse"
+                    "$ref": "#/definitions/dto.GeneralCategory"
                 },
                 "categories": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.GeneralCategoryResponse"
+                        "$ref": "#/definitions/dto.GeneralCategory"
                     }
                 },
                 "collections": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.GeneralCategoryResponse"
+                        "$ref": "#/definitions/dto.GeneralCategory"
                     }
                 },
                 "createdAt": {
@@ -6437,6 +6436,9 @@ const docTemplate = `{
                 },
                 "description": {
                     "type": "string"
+                },
+                "discountPercentage": {
+                    "type": "integer"
                 },
                 "fiveStarCount": {
                     "type": "integer"
@@ -6485,10 +6487,16 @@ const docTemplate = `{
                 },
                 "updatedAt": {
                     "type": "string"
+                },
+                "variants": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.VariantDetail"
+                    }
                 }
             }
         },
-        "api.ProductListDTO": {
+        "dto.ProductListItem": {
             "type": "object",
             "properties": {
                 "avgRating": {
@@ -6502,6 +6510,9 @@ const docTemplate = `{
                 },
                 "description": {
                     "type": "string"
+                },
+                "discountPercentage": {
+                    "type": "integer"
                 },
                 "id": {
                     "type": "string"
@@ -6529,7 +6540,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.ProductRatingModel": {
+        "dto.ProductRatingDetail": {
             "type": "object",
             "properties": {
                 "count": {
@@ -6544,7 +6555,7 @@ const docTemplate = `{
                 "images": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.RatingImageModel"
+                        "$ref": "#/definitions/dto.RatingImage"
                     }
                 },
                 "isApproved": {
@@ -6576,7 +6587,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.ProductSummary": {
+        "dto.ProductSummary": {
             "type": "object",
             "properties": {
                 "avgRating": {
@@ -6614,18 +6625,7 @@ const docTemplate = `{
                 }
             }
         },
-        "api.RatingImageModel": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "url": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.RatingModel": {
+        "dto.RatingDetail": {
             "type": "object",
             "properties": {
                 "content": {
@@ -6645,7 +6645,18 @@ const docTemplate = `{
                 }
             }
         },
-        "api.RefreshTokenResponse": {
+        "dto.RatingImage": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "url": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.RefreshToken": {
             "type": "object",
             "properties": {
                 "accessToken": {
@@ -6656,235 +6667,13 @@ const docTemplate = `{
                 }
             }
         },
-        "api.RegisterRequestBody": {
-            "type": "object",
-            "required": [
-                "address",
-                "email",
-                "password",
-                "phone",
-                "username"
-            ],
-            "properties": {
-                "address": {
-                    "$ref": "#/definitions/api.CreateAddressRequest"
-                },
-                "email": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 6
-                },
-                "firstName": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                },
-                "lastName": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                },
-                "password": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 6
-                },
-                "phone": {
-                    "type": "string",
-                    "maxLength": 15,
-                    "minLength": 10
-                },
-                "username": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                }
-            }
-        },
-        "api.UpdateAddressRequest": {
-            "type": "object",
-            "properties": {
-                "address1": {
-                    "type": "string"
-                },
-                "city": {
-                    "type": "string"
-                },
-                "district": {
-                    "type": "string"
-                },
-                "isDefault": {
-                    "type": "boolean"
-                },
-                "phone": {
-                    "type": "string"
-                },
-                "ward": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.UpdateCartItemQtyRequest": {
-            "type": "object",
-            "required": [
-                "quantity"
-            ],
-            "properties": {
-                "quantity": {
-                    "type": "integer"
-                }
-            }
-        },
-        "api.UpdateCategoryRequest": {
-            "type": "object",
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "maxLength": 1000
-                },
-                "displayOrder": {
-                    "type": "integer"
-                },
-                "image": {
-                    "$ref": "#/definitions/multipart.FileHeader"
-                },
-                "name": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                },
-                "published": {
-                    "type": "boolean"
-                },
-                "slug": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                }
-            }
-        },
-        "api.UpdateProdVariantReq": {
-            "type": "object",
-            "required": [
-                "attributeValues"
-            ],
-            "properties": {
-                "attributeValues": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "description": {
-                    "type": "string"
-                },
-                "isActive": {
-                    "type": "boolean"
-                },
-                "price": {
-                    "type": "number"
-                },
-                "stockQty": {
-                    "type": "integer",
-                    "minimum": 0
-                },
-                "weight": {
-                    "type": "number"
-                }
-            }
-        },
-        "api.UpdateProductReq": {
-            "type": "object",
-            "properties": {
-                "attributes": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
-                },
-                "brandId": {
-                    "type": "string"
-                },
-                "categoryIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "collectionIds": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
-                },
-                "description": {
-                    "type": "string"
-                },
-                "isActive": {
-                    "type": "boolean"
-                },
-                "name": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                },
-                "price": {
-                    "type": "number"
-                },
-                "shortDescription": {
-                    "type": "string",
-                    "maxLength": 1000
-                },
-                "sku": {
-                    "type": "string",
-                    "maxLength": 100,
-                    "minLength": 3
-                },
-                "slug": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 3
-                }
-            }
-        },
-        "api.UpdateUserRequest": {
-            "type": "object",
-            "required": [
-                "userId"
-            ],
-            "properties": {
-                "email": {
-                    "type": "string",
-                    "maxLength": 255,
-                    "minLength": 6
-                },
-                "firstName": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                },
-                "lastName": {
-                    "type": "string",
-                    "maxLength": 32,
-                    "minLength": 3
-                },
-                "phone": {
-                    "type": "string",
-                    "maxLength": 15,
-                    "minLength": 8
-                },
-                "userId": {
-                    "type": "string"
-                }
-            }
-        },
-        "api.UserDetail": {
+        "dto.UserDetail": {
             "type": "object",
             "properties": {
                 "addresses": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AddressResponse"
+                        "$ref": "#/definitions/dto.AddressDetail"
                     }
                 },
                 "avatarId": {
@@ -6921,7 +6710,7 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "roleCode": {
-                    "$ref": "#/definitions/repository.Role"
+                    "type": "string"
                 },
                 "roleId": {
                     "type": "string"
@@ -6940,13 +6729,13 @@ const docTemplate = `{
                 }
             }
         },
-        "api.VariantModelDto": {
+        "dto.VariantDetail": {
             "type": "object",
             "properties": {
                 "attributeValues": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/api.AttributeValue"
+                        "$ref": "#/definitions/dto.AttributeValueDetail"
                     }
                 },
                 "createdAt": {
@@ -6981,14 +6770,621 @@ const docTemplate = `{
                 }
             }
         },
-        "big.Int": {
-            "type": "object"
+        "models.AddDiscountModel": {
+            "type": "object",
+            "required": [
+                "code",
+                "discountType",
+                "discountValue",
+                "isActive",
+                "name",
+                "validFrom"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 5
+                },
+                "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "discountType": {
+                    "type": "string"
+                },
+                "discountValue": {
+                    "type": "number"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "isStackable": {
+                    "type": "boolean"
+                },
+                "maxDiscountAmount": {
+                    "type": "number"
+                },
+                "minOrderValue": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 3
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "usageLimit": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                }
+            }
         },
-        "github_com_thanhphuocnguyen_go-eshop_internal_api.ErrorResp": {
+        "models.AddDiscountRuleModel": {
+            "type": "object",
+            "required": [
+                "ruleType",
+                "ruleValue"
+            ],
+            "properties": {
+                "ruleType": {
+                    "type": "string",
+                    "enum": [
+                        "product",
+                        "category",
+                        "customer_segment",
+                        "brand",
+                        "first_time_buyer",
+                        "purchase_quantity"
+                    ]
+                },
+                "ruleValue": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "models.AttributeModel": {
+            "type": "object",
+            "required": [
+                "name"
+            ],
+            "properties": {
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.AttributeValueModel": {
+            "type": "object",
+            "required": [
+                "value"
+            ],
+            "properties": {
+                "value": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.CheckoutModel": {
+            "type": "object",
+            "required": [
+                "addressId",
+                "paymentMethod"
+            ],
+            "properties": {
+                "addressId": {
+                    "type": "string"
+                },
+                "discountCodes": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "paymentMethod": {
+                    "type": "string",
+                    "enum": [
+                        "cod",
+                        "stripe"
+                    ]
+                }
+            }
+        },
+        "models.CreateAddress": {
+            "type": "object",
+            "required": [
+                "city",
+                "district",
+                "phone",
+                "street"
+            ],
+            "properties": {
+                "city": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "phone": {
+                    "type": "string",
+                    "maxLength": 15,
+                    "minLength": 10
+                },
+                "street": {
+                    "type": "string"
+                },
+                "ward": {
+                    "type": "string",
+                    "maxLength": 100
+                }
+            }
+        },
+        "models.CreateCategoryModel": {
+            "type": "object",
+            "required": [
+                "name",
+                "slug"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "displayOrder": {
+                    "type": "integer"
+                },
+                "image": {
+                    "$ref": "#/definitions/multipart.FileHeader"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                },
+                "slug": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                }
+            }
+        },
+        "models.CreateProdVariantModel": {
+            "type": "object",
+            "required": [
+                "attributeValues",
+                "isActive",
+                "price",
+                "stockQty"
+            ],
+            "properties": {
+                "attributeValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "stockQty": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "weight": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.CreateProductModel": {
+            "type": "object",
+            "required": [
+                "brandId",
+                "description",
+                "name",
+                "price",
+                "sku",
+                "slug"
+            ],
+            "properties": {
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "brandId": {
+                    "type": "string"
+                },
+                "categoryIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "collectionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "discountPercentage": {
+                    "type": "integer",
+                    "maximum": 100,
+                    "minimum": 0
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                },
+                "price": {
+                    "type": "number"
+                },
+                "shortDescription": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "sku": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 3
+                },
+                "slug": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                }
+            }
+        },
+        "models.LoginModel": {
+            "type": "object",
+            "required": [
+                "password"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "maxLength": 255
+                },
+                "password": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 6
+                },
+                "username": {
+                    "type": "string",
+                    "maxLength": 32
+                }
+            }
+        },
+        "models.PaymentModel": {
+            "type": "object",
+            "required": [
+                "orderId",
+                "paymentMethodId"
+            ],
+            "properties": {
+                "orderId": {
+                    "type": "string"
+                },
+                "paymentMethodId": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.RegisterModel": {
+            "type": "object",
+            "required": [
+                "address",
+                "email",
+                "password",
+                "phone",
+                "username"
+            ],
+            "properties": {
+                "address": {
+                    "$ref": "#/definitions/models.CreateAddress"
+                },
+                "email": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 6
+                },
+                "firstName": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3
+                },
+                "lastName": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3
+                },
+                "password": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 6
+                },
+                "phone": {
+                    "type": "string",
+                    "maxLength": 15,
+                    "minLength": 10
+                },
+                "username": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3
+                }
+            }
+        },
+        "models.UpdateAddress": {
             "type": "object",
             "properties": {
-                "error": {
-                    "$ref": "#/definitions/api.ApiError"
+                "address1": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "district": {
+                    "type": "string"
+                },
+                "isDefault": {
+                    "type": "boolean"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "ward": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UpdateCartItemQtyModel": {
+            "type": "object",
+            "required": [
+                "quantity"
+            ],
+            "properties": {
+                "quantity": {
+                    "type": "integer"
+                }
+            }
+        },
+        "models.UpdateCategoryModel": {
+            "type": "object",
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "displayOrder": {
+                    "type": "integer"
+                },
+                "image": {
+                    "$ref": "#/definitions/multipart.FileHeader"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                },
+                "published": {
+                    "type": "boolean"
+                },
+                "slug": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                }
+            }
+        },
+        "models.UpdateDiscountModel": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 5
+                },
+                "description": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "discountType": {
+                    "type": "string"
+                },
+                "discountValue": {
+                    "type": "number"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "isStackable": {
+                    "type": "boolean"
+                },
+                "maxDiscountAmount": {
+                    "type": "number"
+                },
+                "minOrderValue": {
+                    "type": "number"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 3
+                },
+                "priority": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "usageLimit": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "validFrom": {
+                    "type": "string"
+                },
+                "validUntil": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.UpdateDiscountRuleModel": {
+            "type": "object",
+            "properties": {
+                "ruleType": {
+                    "type": "string",
+                    "enum": [
+                        "condition",
+                        "action"
+                    ]
+                },
+                "ruleValue": {
+                    "type": "object",
+                    "additionalProperties": true
+                }
+            }
+        },
+        "models.UpdateProdVariantModel": {
+            "type": "object",
+            "required": [
+                "attributeValues"
+            ],
+            "properties": {
+                "attributeValues": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "price": {
+                    "type": "number"
+                },
+                "stockQty": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "weight": {
+                    "type": "number"
+                }
+            }
+        },
+        "models.UpdateProductModel": {
+            "type": "object",
+            "properties": {
+                "attributes": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "brandId": {
+                    "type": "string"
+                },
+                "categoryIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "collectionIds": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "description": {
+                    "type": "string"
+                },
+                "discountPercentage": {
+                    "type": "integer",
+                    "maximum": 100,
+                    "minimum": 0
+                },
+                "isActive": {
+                    "type": "boolean"
+                },
+                "name": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                },
+                "price": {
+                    "type": "number"
+                },
+                "shortDescription": {
+                    "type": "string",
+                    "maxLength": 1000
+                },
+                "sku": {
+                    "type": "string",
+                    "maxLength": 100,
+                    "minLength": 3
+                },
+                "slug": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 3
+                }
+            }
+        },
+        "models.UpdateUserModel": {
+            "type": "object",
+            "required": [
+                "userId"
+            ],
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "maxLength": 255,
+                    "minLength": 6
+                },
+                "firstName": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3
+                },
+                "lastName": {
+                    "type": "string",
+                    "maxLength": 32,
+                    "minLength": 3
+                },
+                "phone": {
+                    "type": "string",
+                    "maxLength": 15,
+                    "minLength": 8
+                },
+                "userId": {
+                    "type": "string"
                 }
             }
         },
@@ -7002,12 +7398,14 @@ const docTemplate = `{
                     "$ref": "#/definitions/textproto.MIMEHeader"
                 },
                 "size": {
-                    "type": "integer"
+                    "type": "integer",
+                    "format": "int64"
                 }
             }
         },
         "pgtype.InfinityModifier": {
             "type": "integer",
+            "format": "int32",
             "enum": [
                 1,
                 0,
@@ -7023,7 +7421,8 @@ const docTemplate = `{
             "type": "object",
             "properties": {
                 "exp": {
-                    "type": "integer"
+                    "type": "integer",
+                    "format": "int32"
                 },
                 "infinityModifier": {
                     "$ref": "#/definitions/pgtype.InfinityModifier"
@@ -7039,31 +7438,6 @@ const docTemplate = `{
                 }
             }
         },
-        "pgtype.Timestamptz": {
-            "type": "object",
-            "properties": {
-                "infinityModifier": {
-                    "$ref": "#/definitions/pgtype.InfinityModifier"
-                },
-                "time": {
-                    "type": "string"
-                },
-                "valid": {
-                    "type": "boolean"
-                }
-            }
-        },
-        "repository.Attribute": {
-            "type": "object",
-            "properties": {
-                "id": {
-                    "type": "integer"
-                },
-                "name": {
-                    "type": "string"
-                }
-            }
-        },
         "repository.AttributeDataSnapshot": {
             "type": "object",
             "properties": {
@@ -7075,121 +7449,25 @@ const docTemplate = `{
                 }
             }
         },
-        "repository.Category": {
-            "type": "object",
-            "properties": {
-                "createdAt": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "displayOrder": {
-                    "type": "integer"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "imageId": {
-                    "type": "string"
-                },
-                "imageUrl": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "published": {
-                    "type": "boolean"
-                },
-                "slug": {
-                    "type": "string"
-                },
-                "updatedAt": {
-                    "type": "string"
-                }
-            }
-        },
-        "repository.CreatePaymentResult": {
-            "type": "object",
-            "properties": {
-                "clientSecret": {
-                    "type": "string"
-                },
-                "orderId": {
-                    "type": "string"
-                },
-                "paymentId": {
-                    "type": "string"
-                },
-                "paymentIntentId": {
-                    "type": "string"
-                },
-                "status": {
-                    "$ref": "#/definitions/repository.PaymentStatus"
-                },
-                "totalPrice": {
-                    "type": "number"
-                }
-            }
-        },
-        "repository.GetAvailableDiscountsForCartRow": {
-            "type": "object",
-            "properties": {
-                "categoryCount": {
-                    "type": "integer"
-                },
-                "categoryId": {
-                    "type": "string"
-                },
-                "code": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                },
-                "discountType": {
-                    "type": "string"
-                },
-                "discountValue": {
-                    "$ref": "#/definitions/pgtype.Numeric"
-                },
-                "expiresAt": {
-                    "$ref": "#/definitions/pgtype.Timestamptz"
-                },
-                "id": {
-                    "type": "string"
-                },
-                "productCount": {
-                    "type": "integer"
-                },
-                "productId": {
-                    "type": "string"
-                },
-                "startsAt": {
-                    "$ref": "#/definitions/pgtype.Timestamptz"
-                }
-            }
-        },
         "repository.OrderStatus": {
             "type": "string",
             "enum": [
                 "pending",
                 "confirmed",
-                "processing",
-                "shipped",
+                "delivering",
                 "delivered",
                 "cancelled",
-                "refunded"
+                "refunded",
+                "completed"
             ],
             "x-enum-varnames": [
                 "OrderStatusPending",
                 "OrderStatusConfirmed",
-                "OrderStatusProcessing",
-                "OrderStatusShipped",
+                "OrderStatusDelivering",
                 "OrderStatusDelivered",
                 "OrderStatusCancelled",
-                "OrderStatusRefunded"
+                "OrderStatusRefunded",
+                "OrderStatusCompleted"
             ]
         },
         "repository.PaymentStatus": {
@@ -7232,6 +7510,9 @@ const docTemplate = `{
                 "description": {
                     "type": "string"
                 },
+                "discountPercentage": {
+                    "type": "integer"
+                },
                 "fiveStarCount": {
                     "type": "integer"
                 },
@@ -7254,6 +7535,9 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "oneStarCount": {
+                    "type": "integer"
+                },
+                "purchasedCount": {
                     "type": "integer"
                 },
                 "ratingCount": {
@@ -7316,19 +7600,6 @@ const docTemplate = `{
                     "$ref": "#/definitions/pgtype.Numeric"
                 }
             }
-        },
-        "repository.Role": {
-            "type": "string",
-            "enum": [
-                "admin",
-                "user",
-                "moderator"
-            ],
-            "x-enum-varnames": [
-                "UserRoleCodeAdmin",
-                "UserRoleCodeUser",
-                "UserRoleCodeModerator"
-            ]
         },
         "repository.ShippingAddressSnapshot": {
             "type": "object",

@@ -7,9 +7,9 @@ import (
 	"github.com/cloudinary/cloudinary-go/v2"
 	"github.com/cloudinary/cloudinary-go/v2/api/uploader"
 	"github.com/cloudinary/cloudinary-go/v2/logger"
+	"github.com/redhander/go-eshop/config"
+	applogger "github.com/redhander/go-eshop/pkg/logger"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/config"
-	applogger "github.com/thanhphuocnguyen/go-eshop/pkg/logger"
 )
 
 type CloudinaryUploader struct {

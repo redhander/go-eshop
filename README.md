@@ -118,7 +118,7 @@ A comprehensive, production-ready e-commerce platform built with Go, featuring a
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/thanhphuocnguyen/go-eshop.git
+   git clone https://github.com/redhander/go-eshop.git
    cd go-eshop/server
    ```
 
@@ -709,6 +709,6 @@ Special thanks to the amazing open-source projects that make this possible:
 
 ### 🌟 If you find this project helpful, please consider giving it a star! ⭐
 
-**Made with ❤️ by [Thanh Phuoc Nguyen](https://github.com/thanhphuocnguyen)**
+**Made with ❤️ by [Thanh Phuoc Nguyen](https://github.com/redhander)**
 
 </div>

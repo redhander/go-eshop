@@ -7,10 +7,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
 )
 
 // GetCategoriesHandler retrieves a list of Categories.
@@ -22,7 +22,7 @@ import (
 // @Produce json
 // @Param page query int false "Page number"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[[]dto.AdminCategoryDetail]
+// @Success 200 {object} dto.ApiResponse[[]dto.AdminCategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /categories [get]
@@ -81,7 +81,7 @@ func (sv *Server) GetCategoriesHandler(c *gin.Context) {
 // @Produce json
 // @Param slug path string true "Category Slug"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /categories/slug/{slug} [get]
@@ -143,10 +143,10 @@ func (sv *Server) GetCategoryBySlugHandler(c *gin.Context) {
 // @Accept json
 // @Tags Categories
 // @Produce json
-// @Param request body CreateCategoryRequest true "Category request"
-// @Success 201 {object} ApiResponse[dto.CategoryDetail]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Param request body models.CreateCategoryModel true "Category request"
+// @Success 201 {object} dto.ApiResponse[dto.CategoryDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/categories [post]
 func (sv *Server) createCategoryHandler(c *gin.Context) {
 	var req models.CreateCategoryModel
@@ -200,7 +200,7 @@ func (sv *Server) createCategoryHandler(c *gin.Context) {
 // @Produce json
 // @Param page query int false "Page number"
 // @Param pageSize query int false "Page size"
-// @Success 200 {object} ApiResponse[[]dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[[]dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /admin/categories [get]
@@ -253,7 +253,7 @@ func (sv *Server) GetAdminCategoriesHandler(c *gin.Context) {
 // @Tags Categories
 // @Produce json
 // @Param id path int true "Category ID"
-// @Success 200 {object} ApiResponse[dto.CategoryDetail]
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
 // @Failure 400 {object} ErrorResp
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
@@ -297,9 +297,9 @@ func (sv *Server) GetCategoryByID(c *gin.Context) {
 // @Produce json
 // @Param id path int true "Category ID"
 // @Param request body models.UpdateCategoryModel true "Category request"
-// @Success 200 {object} ApiResponse[repository.Category]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.CategoryDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/categories/{id} [put]
 func (sv *Server) UpdateCategoryHandler(c *gin.Context) {
 	var param models.UriIDParam

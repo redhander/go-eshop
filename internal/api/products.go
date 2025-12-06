@@ -8,11 +8,11 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/internal/models"
+	"github.com/redhander/go-eshop/internal/utils"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/internal/models"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
 )
 
 // @Summary Create a new product
@@ -20,11 +20,11 @@ import (
 // @Description create a new product with the input payload
 // @Tags products
 // @Accept json
-// @Param input body CreateProductReq true "Product input"
+// @Param input body models.CreateProductModel true "Product input"
 // @Produce json
-// @Success 200 {object} ApiResponse[repository.Product]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[repository.Product]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products [post]
 func (sv *Server) AddProductHandler(c *gin.Context) {
 	var req models.CreateProductModel
@@ -112,9 +112,9 @@ func (sv *Server) AddProductHandler(c *gin.Context) {
 // @Accept json
 // @Param productId path int true "Product ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[ProductDetailDto]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.ProductDetail]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products/{productId} [get]
 func (sv *Server) GetProductByIdHandler(c *gin.Context) {
 	var params models.UriIDParam
@@ -153,9 +153,9 @@ func (sv *Server) GetProductByIdHandler(c *gin.Context) {
 // @Param page query int true "Page number"
 // @Param pageSize query int true "Page size"
 // @Produce json
-// @Success 200 {array} ApiResponse[[]ProductSummary]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {array} dto.ApiResponse[[]dto.ProductListItem]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /admin/products [get]
 func (sv *Server) GetAdminProductsHandler(c *gin.Context) {
 	var queries models.ProductQuery
@@ -206,9 +206,9 @@ func (sv *Server) GetAdminProductsHandler(c *gin.Context) {
 // @Param page query int true "Page number"
 // @Param pageSize query int true "Page size"
 // @Produce json
-// @Success 200 {array} ApiResponse[[]ProductSummary]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {array} dto.ApiResponse[[]dto.ProductSummary]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products [get]
 func (sv *Server) GetProductsHandler(c *gin.Context) {
 	var queries models.ProductQuery
@@ -271,11 +271,11 @@ func (sv *Server) GetProductsHandler(c *gin.Context) {
 // @Tags products
 // @Accept json
 // @Param productId path int true "Product ID"
-// @Param input body UpdateProductReq true "Product update input"
+// @Param input body models.UpdateProductModel true "Product update input"
 // @Produce json
-// @Success 200 {object} ApiResponse[repository.Product]
-// @Failure 404 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[repository.Product]
+// @Failure 404 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products/{productId} [put]
 func (sv *Server) UpdateProductHandler(c *gin.Context) {
 	var param models.UriIDParam
@@ -411,7 +411,7 @@ func (sv *Server) UpdateProductHandler(c *gin.Context) {
 // @Accept multipart/form-data
 // @Param id path string true "Product ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[string]
+// @Success 200 {object} dto.ApiResponse[string]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /products/{id}/image [post]
@@ -472,7 +472,7 @@ func (sv *Server) UploadProductImageHandler(c *gin.Context) {
 // @Accept json
 // @Param productId path int true "Product ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[string]
+// @Success 200 {object} dto.ApiResponse[string]
 // @Failure 404 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /products/{productId} [delete]
@@ -507,11 +507,11 @@ func (sv *Server) DeleteProductHandler(c *gin.Context) {
 // @Description create a new product with the input payload
 // @Tags products
 // @Accept json
-// @Param input body CreateProdVariantReq true "Product variant input"
+// @Param input body models.CreateProdVariantModel true "Product variant input"
 // @Produce json
-// @Success 200 {object} ApiResponse[string]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[string]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products/{id}/variants [post]
 func (sv *Server) AddVariantHandler(c *gin.Context) {
 	var prodId models.ProductVariantParam
@@ -612,9 +612,9 @@ func (sv *Server) AddVariantHandler(c *gin.Context) {
 // @Tags products
 // @Accept json
 // @Produce json
-// @Success 200 {object} ApiResponse[[]VariantModelDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[[]dto.VariantDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products/{id}/variants [get]
 func (sv *Server) GetVariantsHandler(c *gin.Context) {
 	var prodId models.ProductVariantParam
@@ -650,9 +650,9 @@ func (sv *Server) GetVariantsHandler(c *gin.Context) {
 // @Produce json
 // @Param id path string true "Product ID"
 // @Param variantID path string true "Product Variant ID"
-// @Success 200 {object} ApiResponse[VariantModelDto]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[dto.VariantDetail]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products/{id}/variants/{variantID} [get]
 func (sv *Server) GetVariantHandler(c *gin.Context) {
 	var prodId models.ProductVariantParam
@@ -719,11 +719,11 @@ func (sv *Server) GetVariantHandler(c *gin.Context) {
 // @Description update a product with the input payload
 // @Tags products
 // @Accept json
-// @Param input body UpdateProdVariantReq true "Product variant input"
+// @Param input body models.UpdateProdVariantModel true "Product variant input"
 // @Produce json
-// @Success 200 {object} ApiResponse[repository.ProductVariant]
-// @Failure 400 {object} ErrorResp
-// @Failure 500 {object} ErrorResp
+// @Success 200 {object} dto.ApiResponse[repository.ProductVariant]
+// @Failure 400 {object} dto.ErrorResp
+// @Failure 500 {object} dto.ErrorResp
 // @Router /products/{id}/variants/{variantId} [put]
 func (sv *Server) UpdateVariantHandler(c *gin.Context) {
 	var uris models.URIVariantParam
@@ -780,7 +780,7 @@ func (sv *Server) UpdateVariantHandler(c *gin.Context) {
 // @Param id path string true "Product ID"
 // @Param variantId path string true "Product Variant ID"
 // @Produce json
-// @Success 200 {object} ApiResponse[repository.ProductVariant]
+// @Success 200 {object} dto.ApiResponse[repository.ProductVariant]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /products/{id}/variants/{variantId}/images [post]
@@ -853,7 +853,7 @@ func (sv *Server) UploadVariantImageHandler(c *gin.Context) {
 // @Tags products
 // @Accept json
 // @Produce json
-// @Success 200 {object} ApiResponse[string]
+// @Success 200 {object} dto.ApiResponse[string]
 // @Failure 400 {object} ErrorResp
 // @Failure 500 {object} ErrorResp
 // @Router /products/{id}/variant/{variantID} [delete]

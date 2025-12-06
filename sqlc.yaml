@@ -4,7 +4,7 @@ sql:
     queries: "./internal/db/query"
     schema: "./migrations"
     database:
-      uri: "postgresql://postgres:postgres@localhost:5433/eshop?sslmode=disable"
+      uri: "postgresql://postgres:postgres@localhost:5432/eshop?sslmode=disable"
     rules:
       - sqlc/db-prepare
     gen:

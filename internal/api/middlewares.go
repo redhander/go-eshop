@@ -7,9 +7,9 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"github.com/redhander/go-eshop/internal/dto"
+	"github.com/redhander/go-eshop/pkg/auth"
 	"github.com/rs/zerolog/log"
-	"github.com/thanhphuocnguyen/go-eshop/internal/dto"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
 )
 
 func authenticateMiddleware(tokenGenerator auth.TokenGenerator) gin.HandlerFunc {

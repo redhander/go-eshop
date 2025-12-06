@@ -12,12 +12,12 @@ import (
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5/pgtype"
+	"github.com/redhander/go-eshop/config"
+	"github.com/redhander/go-eshop/internal/db/repository"
+	"github.com/redhander/go-eshop/internal/utils"
+	"github.com/redhander/go-eshop/pkg/auth"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/cobra"
-	"github.com/thanhphuocnguyen/go-eshop/config"
-	"github.com/thanhphuocnguyen/go-eshop/internal/db/repository"
-	"github.com/thanhphuocnguyen/go-eshop/internal/utils"
-	"github.com/thanhphuocnguyen/go-eshop/pkg/auth"
 )
 
 var AttributesSeed = []string{"Color",
